@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Sidebar = () => {
 	return (
@@ -7,36 +8,16 @@ const Sidebar = () => {
 				Start Bootstrap
 			</div>
 			<div className='list-group list-group-flush'>
-				<a
+				<Link
 					className='list-group-item list-group-item-action list-group-item-light p-3'
-					href='#!'>
+					to='/home'>
 					Dashboard
-				</a>
-				<a
+				</Link>
+				<Link
 					className='list-group-item list-group-item-action list-group-item-light p-3'
-					href='#!'>
-					Shortcuts
-				</a>
-				<a
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					href='#!'>
-					Overview
-				</a>
-				<a
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					href='#!'>
-					Events
-				</a>
-				<a
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					href='#!'>
-					Profile
-				</a>
-				<a
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					href='#!'>
-					Status
-				</a>
+					to='/user'>
+					User
+				</Link>
 			</div>
 		</div>
 	);

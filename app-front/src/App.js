@@ -1,22 +1,25 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Contenido from './componentes/Contenido';
+import ContenidoDos from './componentes/ContenidoDos';
 import Sidebar from './componentes/Sidebar';
 import TopNavegacion from './componentes/TopNavegacion';
 
 function App() {
 	return (
 		<div className='d-flex' id='wrapper'>
-			{/* Sidebar */}
-			<Sidebar />
-
-			<div id='page-content-wrapper'>
-				{/* Menu de navegacion */}
-				<TopNavegacion />
-
-				{/* Contenido por pestaña */}
-				<Contenido />
-			</div>
+			<BrowserRouter>
+				<Sidebar />
+				<div id='page-content-wrapper'>
+					{/* Menu de navegacion */}
+					<TopNavegacion />
+					<Routes>
+						<Route path='/home' element={<Contenido />} />
+						<Route path='/user' element={<ContenidoDos />} />
+					</Routes>
+				</div>
+			</BrowserRouter>
 		</div>
 	);
 }

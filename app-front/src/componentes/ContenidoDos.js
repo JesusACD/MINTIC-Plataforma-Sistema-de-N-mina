@@ -1,14 +1,10 @@
 import React from 'react';
 
-const Contenido = () => {
+const ContenidoDos = () => {
 	return (
 		<div className='container-fluid'>
-			<h1 className='mt-4'>Simple Sidebar Contenido 1</h1>
-			<p>
-				The starting state of the menu will appear collapsed on smaller
-				screens, and will appear non-collapsed on larger screens. When
-				toggled using the button below, the menu will change.
-			</p>
+			<h1 className='mt-4'>Simple Sidebar Contenido 2</h1>
+			<p>EY JESUS CARRANZA</p>
 			<p>
 				Make sure to keep all page content within the
 				<code>#page-content-wrapper</code>. The top navbar is optional,
@@ -20,4 +16,4 @@ const Contenido = () => {
 	);
 };
 
-export default Contenido;
+export default ContenidoDos;
