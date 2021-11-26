@@ -1,9 +1,9 @@
 import React from 'react';
 
-const Contenido = () => {
+const Contenido = ({titulo}) => {
 	return (
 		<div className='container-fluid'>
-			<h1 className='mt-4'>Simple Sidebar Contenido 1</h1>
+			<h1 className='mt-4'>{titulo}</h1>
 			<p>
 				The starting state of the menu will appear collapsed on smaller
 				screens, and will appear non-collapsed on larger screens. When

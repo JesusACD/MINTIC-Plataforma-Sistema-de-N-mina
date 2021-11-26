@@ -4,7 +4,7 @@ const TopNavegacion = () => {
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light bg-light border-bottom'>
 			<div className='container-fluid'>
-				<button className='btn btn-primary' id='sidebarToggle'>
+				<button className='btn btn-success' id='sidebarToggle'>
 					Toggle Menu
 				</button>
 				<button

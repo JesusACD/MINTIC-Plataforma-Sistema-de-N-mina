@@ -15,8 +15,10 @@ function App() {
 					{/* Menu de navegacion */}
 					<TopNavegacion />
 					<Routes>
-						<Route path='/home' element={<Contenido />} />
-						<Route path='/user' element={<ContenidoDos />} />
+						<Route path='/gestion-usuario' element={<Contenido titulo="Contenido para Gestionar Usuarios" />} />
+						<Route path='/usuario-nomina' element={<Contenido titulo="Gestionar los usarios nomina" />} />
+						<Route path='/usuario-empleado' element={<Contenido titulo="Contenido para los usuarios empleados" />} />
+						<Route path='/gestion-nomina' element={<Contenido titulo="Gestionar la nomina" />} />
 					</Routes>
 				</div>
 			</BrowserRouter>
