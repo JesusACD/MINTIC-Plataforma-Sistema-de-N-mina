@@ -8,6 +8,7 @@ const Login = ({ setUsuariologin }) => {
 		username: '',
 		password: '',
 	});
+	const [error, setError] = useState(false);
 
 	// Manejar los campos del formulario
 	const actualizarUsuario = (e) => {
@@ -21,6 +22,8 @@ const Login = ({ setUsuariologin }) => {
 		console.log(usuario);
 		if (usuario.username == 'user@mail.com') {
 			setUsuariologin(false);
+		} else {
+			setError(true);
 		}
 	};
 	return (
@@ -30,6 +33,12 @@ const Login = ({ setUsuariologin }) => {
 					<div className='imgcontainer'>
 						<img src='img/avatar.svg' alt='Avatar' class='avatar' />
 					</div>
+					{error ? (
+						<div className='alert alert-danger'>
+							Usuario o contraseña invalidos
+						</div>
+					) : null}
+
 					<form onSubmit={validadUser}>
 						<div className='form-group'>
 							<label for='exampleInputEmail1'>Email</label>
