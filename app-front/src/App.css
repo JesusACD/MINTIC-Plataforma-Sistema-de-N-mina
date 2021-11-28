@@ -1,0 +1,7 @@
+.contenido-centro {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #D8E9A8
+}
