@@ -1,9 +1,17 @@
+body{
+    
+    margin: 0;
+    padding: 0;
+}
+
 .contenido-centro {
+    background: #4E9F3D;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #1E5128, #4E9F3D);  
+    background: linear-gradient(to right, #1E5128, #4E9F3D); 
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #D8E9A8
 }
 .wrapper {
     padding: 40px 20px;
