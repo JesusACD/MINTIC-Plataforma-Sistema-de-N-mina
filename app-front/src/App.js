@@ -15,7 +15,7 @@ function App() {
 			{usuariologin ? (
 				<Routes>
 					<Route
-						path='/login'
+						path='/'
 						element={<Login setUsuariologin={setUsuariologin} />}
 					/>
 				</Routes>
