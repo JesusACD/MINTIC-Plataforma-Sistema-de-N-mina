@@ -1,13 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { getUserLocalStorage } from '../helper';
 
 const Sidebar = () => {
+	const myuser = getUserLocalStorage();
 	return (
 		<div className='border-end bg-white' id='sidebar-wrapper'>
 			<div className='sidebar-heading border-bottom bg-light'>
-				Start Bootstrap
+				Hola {myuser.user}
 			</div>
 			<div className='list-group list-group-flush'>
+				<Link
+					className='list-group-item list-group-item-action list-group-item-light p-3'
+					to='/home'>
+					Home2
+				</Link>
 				<Link
 					className='list-group-item list-group-item-action list-group-item-light p-3'
 					to='/gestion-usuario'>

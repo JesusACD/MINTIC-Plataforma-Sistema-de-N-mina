@@ -1,9 +1,11 @@
 import React, { Fragment, useState } from 'react';
+import { getUserLocalStorage, guardarUserLocalStorage } from '../helper';
 
-const Login = ({ setUsuariologin }) => {
+const Login = ({ user }) => {
 	// setUsuariologin(false);
 
 	// Estado para los campos del formulario
+
 	const [usuario, setUsuario] = useState({
 		username: '',
 		password: '',
@@ -19,29 +21,65 @@ const Login = ({ setUsuariologin }) => {
 	// funcion para validar un usuario
 	const validadUser = (e) => {
 		e.preventDefault();
-		console.log(usuario);
-		if (usuario.username == 'user@mail.com') {
-			setUsuariologin(false);
+		if (usuario.username === `${user}@mail.com`) {
+			guardarUserLocalStorage(user);
+			localStorage.setItem('login', true);
+			window.location.href = '/home';
 		} else {
 			setError(true);
+			return;
 		}
 	};
 	return (
 		<Fragment>
 			<div className='contenido-centro'>
 				<div className='wrapper'>
+					{/* <div className='d-grid gap-2 d-md-block'> */}
+					<div className='d-flex justify-content-around'>
+						<button
+							type='button'
+							class='btn btn-outline-primary'
+							onClick={() =>
+								(window.location.href = '/empleado-login')
+							}>
+							Empleado
+						</button>
+						<button
+							type='button'
+							class='btn btn-outline-secondary'
+							onClick={() =>
+								(window.location.href = '/nomina-login')
+							}>
+							Nomina
+						</button>
+						<button
+							type='button'
+							class='btn btn-outline-success'
+							onClick={() =>
+								(window.location.href = '/admin-login')
+							}>
+							Admin
+						</button>
+					</div>
+
 					<div className='imgcontainer'>
-						<img src='img/avatar.svg' alt='Avatar' class='avatar' />
+						<img
+							src='../img/avatar.svg'
+							alt='Avatar'
+							className='avatar'
+						/>
 					</div>
 					{error ? (
 						<div className='alert alert-danger'>
 							Usuario o contraseña invalidos
 						</div>
 					) : null}
-
+					<h3 className='text-center'>
+						Login {user.charAt(5).toUpperCase() + user.slice(6)}
+					</h3>
 					<form onSubmit={validadUser}>
 						<div className='form-group'>
-							<label for='exampleInputEmail1'>Email</label>
+							<label htmlFor='exampleInputEmail1'>Email</label>
 							<input
 								type='email'
 								className='form-control'
@@ -58,7 +96,9 @@ const Login = ({ setUsuariologin }) => {
 							</small> */}
 						</div>
 						<div className='form-group'>
-							<label for='exampleInputPassword1'>Password</label>
+							<label htmlFor='exampleInputPassword1'>
+								Password
+							</label>
 							<input
 								type='password'
 								className='form-control'

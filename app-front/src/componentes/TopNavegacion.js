@@ -1,6 +1,15 @@
 import React from 'react';
 
 const TopNavegacion = () => {
+
+	const cerrarSesion = () => {
+		localStorage.removeItem('user-nomina');
+		localStorage.removeItem('user-empleado');
+		localStorage.removeItem('admin');
+		localStorage.removeItem('login');
+		localStorage.removeItem('user');
+		window.location.href = '/';
+	};
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light bg-light border-bottom'>
 			<div className='container-fluid'>
@@ -45,8 +54,10 @@ const TopNavegacion = () => {
 							<div
 								className='dropdown-menu dropdown-menu-end'
 								aria-labelledby='navbarDropdown'>
-								<a className='dropdown-item' href='#!'>
-									Action
+								<a
+									className='dropdown-item'
+									onClick={cerrarSesion}>
+									Salir
 								</a>
 								<a className='dropdown-item' href='#!'>
 									Another action

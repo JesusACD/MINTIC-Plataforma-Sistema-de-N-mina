@@ -1,6 +1,10 @@
 import React from 'react';
 
-const Contenido = ({titulo}) => {
+const Contenido = ({ titulo, user }) => {
+	// const usuario = localStorage.getItem(user);
+	// if (!usuario) {
+	// 	return null;
+	// }
 	return (
 		<div className='container-fluid'>
 			<h1 className='mt-4'>{titulo}</h1>
