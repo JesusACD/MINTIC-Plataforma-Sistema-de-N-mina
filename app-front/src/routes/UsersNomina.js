@@ -5,7 +5,7 @@ const UsersNomina = () => {
 	return (
 		<Routes>
 			<Route
-				path='/home'
+				path='/crear-empleados'
 				element={
 					<Contenido
 						titulo='Este es mi home de user nomina'
@@ -14,7 +14,7 @@ const UsersNomina = () => {
 				}
 			/>
 			<Route
-				path='/gestion-usuario'
+				path='/permiso-empleados'
 				element={
 					<Contenido
 						titulo='Contenido para Gestionar Usuarios'
@@ -23,7 +23,7 @@ const UsersNomina = () => {
 				}
 			/>
 			<Route
-				path='/usuario-nomina'
+				path='/vacaciones-empleados'
 				element={
 					<Contenido
 						titulo='Gestionar los usarios nomina'
@@ -32,19 +32,10 @@ const UsersNomina = () => {
 				}
 			/>
 			<Route
-				path='/usuario-empleado'
+				path='/reportes'
 				element={
 					<Contenido
 						titulo='Contenido para los usuarios Nomina'
-						user='user-nomina'
-					/>
-				}
-			/>
-			<Route
-				path='/gestion-nomina'
-				element={
-					<Contenido
-						titulo='Gestionar la nomina'
 						user='user-nomina'
 					/>
 				}

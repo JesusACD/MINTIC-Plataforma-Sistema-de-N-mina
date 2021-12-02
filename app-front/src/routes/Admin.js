@@ -5,42 +5,54 @@ const Admin = () => {
 	return (
 		<Routes>
 			<Route
-				path='/home'
-				element={
-					<Contenido titulo='Este es mi home de admin' user='admin' />
-				}
-			/>
-			<Route
-				path='/gestion-usuario'
+				path='/admin-crear-empleados'
 				element={
 					<Contenido
-						titulo='Contenido para Gestionar Usuarios'
-						user='admin'
+						titulo='Contenido para Gestionar Usuarios Admin'
+						user='user-admin'
 					/>
 				}
 			/>
 			<Route
-				path='/usuario-nomina'
+				path='/admin-crear-nominas'
 				element={
 					<Contenido
 						titulo='Gestionar los usarios nomina'
-						user='admin'
+						user='user-admin'
 					/>
 				}
 			/>
 			<Route
-				path='/usuario-empleado'
+				path='/admin-listar-empleados'
 				element={
 					<Contenido
 						titulo='Contenido para los usuarios empleados'
-						user='admin'
+						user='user-admin'
 					/>
 				}
 			/>
 			<Route
-				path='/gestion-nomina'
+				path='/admin-listar-nomina'
 				element={
-					<Contenido titulo='Gestionar la nomina' user='admin' />
+					<Contenido titulo='Gestionar la nomina' user='user-admin' />
+				}
+			/>
+			<Route
+				path='/admin-permiso-empleados'
+				element={
+					<Contenido titulo='Gestionar la nomina' user='user-admin' />
+				}
+			/>
+			<Route
+				path='/admin-vacaciones-empleados'
+				element={
+					<Contenido titulo='Gestionar la nomina' user='user-admin' />
+				}
+			/>
+			<Route
+				path='/admin-reportes'
+				element={
+					<Contenido titulo='Gestionar la nomina' user='user-admin' />
 				}
 			/>
 		</Routes>

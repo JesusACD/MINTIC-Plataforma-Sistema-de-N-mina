@@ -1,16 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { getUserLocalStorage } from '../helper';
+import { getUserLocalStorage, listarSidebar } from '../helper';
 
 const Sidebar = () => {
 	const myuser = getUserLocalStorage();
+	const enlaces = listarSidebar(myuser.user);
 	return (
 		<div className='border-end bg-white' id='sidebar-wrapper'>
 			<div className='sidebar-heading border-bottom bg-light'>
 				Hola {myuser.user}
 			</div>
 			<div className='list-group list-group-flush'>
-				<Link
+				{enlaces.map((link) => (
+					<Link
+						className='list-group-item list-group-item-action list-group-item-light p-3'
+						to={link.ruta}>
+						{link.nombre}
+					</Link>
+				))}
+				{/* <Link
 					className='list-group-item list-group-item-action list-group-item-light p-3'
 					to='/home'>
 					Home2
@@ -34,7 +42,7 @@ const Sidebar = () => {
 					className='list-group-item list-group-item-action list-group-item-light p-3'
 					to='/gestion-nomina'>
 					Gestion Nomina
-				</Link>
+				</Link> */}
 			</div>
 		</div>
 	);

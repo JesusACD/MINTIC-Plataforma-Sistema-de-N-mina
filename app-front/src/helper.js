@@ -40,3 +40,93 @@ export function getUserLocalStorage() {
 		return null;
 	}
 }
+
+export function listarSidebar(user) {
+	let rutas = [];
+	switch (user) {
+		case 'user-empleado':
+			rutas = [
+				{
+					ruta: '/mis-datos',
+					nombre: 'Mis Datos',
+				},
+				{
+					ruta: '/solicitar-vacaciones',
+					nombre: 'Solicitar Vacaciones',
+				},
+				{
+					ruta: '/descargar-reporte-pago',
+					nombre: 'Descargar Reporte de Pago',
+				},
+				{
+					ruta: '/solicitar-certificado-laboral',
+					nombre: 'Certificado Laborar',
+				},
+				{
+					ruta: '/solicitar-vacaciones',
+					nombre: 'Solicitar Vacaciones',
+				},
+				{
+					ruta: '/solicitar-permisos',
+					nombre: 'Solicitar Permisos',
+				},
+			];
+			break;
+		case 'user-nomina':
+			rutas = [
+				{
+					ruta: '/crear-empleados',
+					nombre: 'Crear Empleados',
+				},
+				{
+					ruta: '/permiso-empleados',
+					nombre: 'Permiso Empleados',
+				},
+				{
+					ruta: '/vacaciones-empleados',
+					nombre: 'Vacaciones Empleados',
+				},
+				{
+					ruta: '/reportes',
+					nombre: 'Reportes',
+				},
+			];
+			break;
+		case 'user-admin':
+			rutas = [
+				{
+					ruta: '/admin-crear-empleados',
+					nombre: 'Crear Empleados',
+				},
+				{
+					ruta: '/admin-crear-nominas',
+					nombre: 'Crear Usuario Nomina',
+				},
+				{
+					ruta: '/admin-listar-empleados',
+					nombre: 'Listar Usuarios Empleados',
+				},
+				{
+					ruta: '/admin-listar-nomina',
+					nombre: 'Listar Usuarios Nomina',
+				},
+				{
+					ruta: '/admin-permiso-empleados',
+					nombre: 'Permiso Empleados',
+				},
+				{
+					ruta: '/admin-vacaciones-empleados',
+					nombre: 'Vacaciones Empleados',
+				},
+				{
+					ruta: '/admin-reportes',
+					nombre: 'Reportes',
+				},
+			];
+			break;
+
+		default:
+			break;
+	}
+	return rutas;
+}

@@ -6,16 +6,16 @@ const UsersEmpleado = () => {
 		<Routes>
 			{console.log('estamos dentro de empleados')}
 			<Route
-				path='/home'
+				path='/mis-datos'
 				element={
 					<Contenido
-						titulo='Este es mi home de user empleado'
+						titulo='Datos de empleado'
 						user='user-empleado'
 					/>
 				}
 			/>
 			<Route
-				path='/gestion-usuario'
+				path='/solicitar-vacaciones'
 				element={
 					<Contenido
 						titulo='Contenido para Gestionar Usuarios'
@@ -24,7 +24,7 @@ const UsersEmpleado = () => {
 				}
 			/>
 			<Route
-				path='/usuario-nomina'
+				path='/descargar-reporte-pago'
 				element={
 					<Contenido
 						titulo='Gestionar los usarios nomina'
@@ -33,7 +33,7 @@ const UsersEmpleado = () => {
 				}
 			/>
 			<Route
-				path='/usuario-empleado'
+				path='/solicitar-certificado-laboral'
 				element={
 					<Contenido
 						titulo='Contenido para los usuarios empleados'
@@ -42,7 +42,16 @@ const UsersEmpleado = () => {
 				}
 			/>
 			<Route
-				path='/gestion-nomina'
+				path='/solicitar-vacaciones'
+				element={
+					<Contenido
+						titulo='Gestionar la nomina'
+						user='user-empleado'
+					/>
+				}
+			/>
+			<Route
+				path='/solicitar-permisos'
 				element={
 					<Contenido
 						titulo='Gestionar la nomina'
