@@ -8,6 +8,7 @@ const Contenido = ({ titulo, user }) => {
 	return (
 		<div className='container-fluid'>
 			<h1 className='mt-4'>{titulo}</h1>
+			<h2>{user}</h2>
 			<p>
 				The starting state of the menu will appear collapsed on smaller
 				screens, and will appear non-collapsed on larger screens. When
