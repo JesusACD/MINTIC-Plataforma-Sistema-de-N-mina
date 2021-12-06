@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DatosDeUsuario } from '../context/UserContext';
 
 const TopNavegacion = () => {
-
 	const cerrarSesion = () => {
 		localStorage.removeItem('user-nomina');
 		localStorage.removeItem('user-empleado');
@@ -10,6 +10,7 @@ const TopNavegacion = () => {
 		localStorage.removeItem('user');
 		window.location.href = '/';
 	};
+	const { user } = useContext(DatosDeUsuario);
 	return (
 		<nav className='navbar navbar-expand-lg navbar-light bg-light border-bottom'>
 			<div className='container-fluid'>
@@ -30,16 +31,6 @@ const TopNavegacion = () => {
 					className='collapse navbar-collapse'
 					id='navbarSupportedContent'>
 					<ul className='navbar-nav ms-auto mt-2 mt-lg-0'>
-						<li className='nav-item active'>
-							<a className='nav-link' href='#!'>
-								Home
-							</a>
-						</li>
-						<li className='nav-item'>
-							<a className='nav-link' href='#!'>
-								Link
-							</a>
-						</li>
 						<li className='nav-item dropdown'>
 							<a
 								className='nav-link dropdown-toggle'
@@ -49,7 +40,7 @@ const TopNavegacion = () => {
 								data-bs-toggle='dropdown'
 								aria-haspopup='true'
 								aria-expanded='false'>
-								Dropdown
+								{`${user.nombre} ${user.apellido}`}
 							</a>
 							<div
 								className='dropdown-menu dropdown-menu-end'

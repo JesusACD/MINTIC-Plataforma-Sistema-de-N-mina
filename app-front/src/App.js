@@ -9,6 +9,7 @@ import UsersEmpleado from './routes/UsersEmpleado';
 import UsersNomina from './routes/UsersNomina';
 import Admin from './routes/Admin';
 import { getUserLocalStorage } from './helper';
+import UserContextProvider from './context/UserContext';
 
 function App() {
 	// Estado para el usuario logueado
@@ -27,41 +28,43 @@ function App() {
 		userlogin = null;
 	}
 	return (
-		<BrowserRouter>
-			{!useractivo ? (
-				<Routes>
-					<Route
-						exact
-						path='/empleado-login'
-						element={<Login user='user-empleado' />}
-					/>
-					<Route
-						exact
-						path='/nomina-login'
-						element={<Login user='user-nomina' />}
-					/>
-					<Route
-						exact
-						path='/admin-login'
-						element={<Login user='user-admin' />}
-					/>
-					<Route
-						exact
-						path='/'
-						element={<Login user='user-empleado' />}
-					/>
-				</Routes>
-			) : (
-				<div className='d-flex' id='wrapper'>
-					<Sidebar />
-					<div id='page-content-wrapper'>
-						{/* Menu de navegacion */}
-						<TopNavegacion />
-						{Component.data}
+		<UserContextProvider>
+			<BrowserRouter>
+				{!useractivo ? (
+					<Routes>
+						<Route
+							exact
+							path='/empleado-login'
+							element={<Login user='user-empleado' />}
+						/>
+						<Route
+							exact
+							path='/nomina-login'
+							element={<Login user='user-nomina' />}
+						/>
+						<Route
+							exact
+							path='/admin-login'
+							element={<Login user='user-admin' />}
+						/>
+						<Route
+							exact
+							path='/'
+							element={<Login user='user-empleado' />}
+						/>
+					</Routes>
+				) : (
+					<div className='d-flex' id='wrapper'>
+						<Sidebar />
+						<div id='page-content-wrapper'>
+							{/* Menu de navegacion */}
+							<TopNavegacion />
+							{Component.data}
+						</div>
 					</div>
-				</div>
-			)}
-		</BrowserRouter>
+				)}
+			</BrowserRouter>
+		</UserContextProvider>
 	);
 }
 

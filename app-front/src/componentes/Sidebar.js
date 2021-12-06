@@ -1,14 +1,21 @@
 import React from 'react';
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { DatosDeUsuario } from '../context/UserContext';
 import { getUserLocalStorage, listarSidebar } from '../helper';
 
 const Sidebar = () => {
+	const { user } = useContext(DatosDeUsuario);
 	const myuser = getUserLocalStorage();
 	const enlaces = listarSidebar(myuser.user);
 	return (
 		<div className='border-end bg-white' id='sidebar-wrapper'>
 			<div className='sidebar-heading border-bottom bg-light'>
-				Hola {myuser.user}
+				Hola{' '}
+				<span className='fw-bold'>{`${user.nombre} ${user.apellido}`}</span>
+				<p className='fs-6'>
+					{myuser.user.charAt(5).toUpperCase() + myuser.user.slice(6)}
+				</p>
 			</div>
 			<div className='list-group list-group-flush'>
 				{enlaces.map((link) => (

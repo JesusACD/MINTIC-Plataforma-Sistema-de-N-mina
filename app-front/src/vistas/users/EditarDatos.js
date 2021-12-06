@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { DatosDeUsuario } from '../../context/UserContext';
 
 const EditarDatos = ({ setEditarDatos }) => {
-	const [usuario, setUsuario] = useState(
-		JSON.parse(localStorage.getItem('user'))
-	);
+	// const [usuario, setUsuario] = useState(
+	// 	JSON.parse(localStorage.getItem('user'))
+	// );
+	const { user, setUser } = useContext(DatosDeUsuario);
+	const [usuario, setUsuario] = useState(user);
 
 	const { nombre, apellido, cedula, telefono } = usuario;
 
@@ -13,6 +16,7 @@ const EditarDatos = ({ setEditarDatos }) => {
 
 	const actualizarUsuario = (e) => {
 		e.preventDefault();
+		setUser(usuario);
 		localStorage.setItem('user', JSON.stringify(usuario));
 		setEditarDatos(false);
 	};
