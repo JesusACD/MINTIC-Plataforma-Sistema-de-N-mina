@@ -6,7 +6,9 @@ const MostrarDatos = () => {
 	const [editardatros, setEditarDatos] = useState(false);
 	let Loquesemuestra = {};
 	editardatros
-		? (Loquesemuestra.component = <EditarDatos />)
+		? (Loquesemuestra.component = (
+				<EditarDatos setEditarDatos={setEditarDatos} />
+		  ))
 		: (Loquesemuestra.component = (
 				<UserDatos
 					setEditarDatos={setEditarDatos}

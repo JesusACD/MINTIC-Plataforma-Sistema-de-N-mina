@@ -19,13 +19,20 @@ export function guardarUserLocalStorage(user) {
 	let myuser;
 	switch (user) {
 		case 'user-empleado':
-			myuser = { email: 'user-empleado@mail.com', user: 'user-empleado' };
+			myuser = {
+				email: 'user-empleado@mail.com',
+				user: 'user-empleado',
+				nombre: 'Tom',
+				apellido: 'Hardy',
+				telefono: 3056785432,
+				cedula: 10653245577,
+			};
 			break;
 		case 'user-nomina':
-			myuser = { email: 'user-nomina@mail.com', user: 'user-nomina' };
+			myuser = { email: 'user-nomina@mail.com', user: 'user-nomina', nombre: 'Manolo',apellido: 'Ozuna',telefono: 3066785432,cedula: 10653245588 };
 			break;
 		case 'user-admin':
-			myuser = { email: 'user-admin@mail.com', user: 'user-admin' };
+			myuser = { email: 'user-admin@mail.com', user: 'user-admin', nombre: 'Giovanny',apellido: 'Cruz',telefono: 3076785432,cedula: 10653245599 };
 			break;
 		default:
 			break;
