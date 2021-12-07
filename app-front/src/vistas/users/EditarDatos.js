@@ -23,7 +23,7 @@ const EditarDatos = ({ setEditarDatos }) => {
 
 	return (
 		<div className='container-fluid'>
-			<div className='card p-3'>
+			<div className='card w-50 p-3 mt-2'>
 				<form onSubmit={actualizarUsuario}>
 					<div className='mb-3'>
 						<label htmlFor='nombre' className='form-label'>
