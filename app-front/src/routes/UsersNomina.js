@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router';
 import Contenido from '../componentes/Contenido';
+import ListarUsuarios from '../vistas/nomina/ListarUsuarios';
 
 const UsersNomina = () => {
 	return (
@@ -13,6 +14,7 @@ const UsersNomina = () => {
 					/>
 				}
 			/>
+			<Route path='/listar-empleados' element={<ListarUsuarios />} />
 			<Route
 				path='/permiso-empleados'
 				element={

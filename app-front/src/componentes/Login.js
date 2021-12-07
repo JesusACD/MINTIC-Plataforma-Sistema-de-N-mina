@@ -38,7 +38,7 @@ const Login = ({ user }) => {
 					<div className='d-flex justify-content-around'>
 						<button
 							type='button'
-							class='btn btn-outline-primary'
+							className='btn btn-outline-primary'
 							onClick={() =>
 								(window.location.href = '/empleado-login')
 							}>
@@ -46,7 +46,7 @@ const Login = ({ user }) => {
 						</button>
 						<button
 							type='button'
-							class='btn btn-outline-secondary'
+							className='btn btn-outline-secondary'
 							onClick={() =>
 								(window.location.href = '/nomina-login')
 							}>
@@ -54,7 +54,7 @@ const Login = ({ user }) => {
 						</button>
 						<button
 							type='button'
-							class='btn btn-outline-success'
+							className='btn btn-outline-success'
 							onClick={() =>
 								(window.location.href = '/admin-login')
 							}>

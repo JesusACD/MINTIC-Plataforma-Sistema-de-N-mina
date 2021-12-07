@@ -1,18 +1,12 @@
 import { Route, Routes } from 'react-router';
 import Contenido from '../componentes/Contenido';
+import CrearEmpleado from '../vistas/admin/CrearEmpleado';
+import ListarEmpleados from '../vistas/admin/ListarEmpleados';
 
 const Admin = () => {
 	return (
 		<Routes>
-			<Route
-				path='/admin-crear-empleados'
-				element={
-					<Contenido
-						titulo='Contenido para Gestionar Usuarios Admin'
-						user='user-admin'
-					/>
-				}
-			/>
+			<Route path='/admin-crear-empleados' element={<CrearEmpleado />} />
 			<Route
 				path='/admin-crear-nominas'
 				element={
@@ -24,12 +18,7 @@ const Admin = () => {
 			/>
 			<Route
 				path='/admin-listar-empleados'
-				element={
-					<Contenido
-						titulo='Contenido para los usuarios empleados'
-						user='user-admin'
-					/>
-				}
+				element={<ListarEmpleados />}
 			/>
 			<Route
 				path='/admin-listar-nomina'
