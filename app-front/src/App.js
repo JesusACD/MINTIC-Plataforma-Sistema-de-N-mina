@@ -10,6 +10,7 @@ import UsersNomina from './routes/UsersNomina';
 import Admin from './routes/Admin';
 import { getUserLocalStorage } from './helper';
 import UserContextProvider from './context/UserContext';
+import Footer from './componentes/Footer';
 
 function App() {
 	// Estado para el usuario logueado
@@ -54,14 +55,14 @@ function App() {
 						/>
 					</Routes>
 				) : (
-					<div className='d-flex' id='wrapper'>
-						<Sidebar />
-						<div id='page-content-wrapper'>
-							{/* Menu de navegacion */}
-							<TopNavegacion />
-							{Component.data}
-						</div>
-					</div>
+					<><div className='d-flex' id='wrapper'>
+							<Sidebar />
+							<div id='page-content-wrapper'>
+								{/* Menu de navegacion */}
+								<TopNavegacion />
+								{Component.data}
+							</div>
+						</div><Footer /></>
 				)}
 			</BrowserRouter>
 		</UserContextProvider>
