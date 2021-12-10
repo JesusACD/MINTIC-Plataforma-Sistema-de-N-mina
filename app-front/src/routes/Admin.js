@@ -1,7 +1,9 @@
 import { Route, Routes } from 'react-router';
 import Contenido from '../componentes/Contenido';
 import CrearEmpleado from '../vistas/admin/CrearEmpleado';
+import CrearUsuarioNomina from '../vistas/admin/CrearUsuarioNomina';
 import ListarEmpleados from '../vistas/admin/ListarEmpleados';
+import ListarUserNomina from '../vistas/admin/ListarUserNomina';
 
 const Admin = () => {
 	return (
@@ -9,12 +11,8 @@ const Admin = () => {
 			<Route path='/admin-crear-empleados' element={<CrearEmpleado />} />
 			<Route
 				path='/admin-crear-nominas'
-				element={
-					<Contenido
-						titulo='Gestionar los usarios nomina'
-						user='user-admin'
-					/>
-				}
+				element={<CrearUsuarioNomina />}
+				
 			/>
 			<Route
 				path='/admin-listar-empleados'
@@ -22,9 +20,7 @@ const Admin = () => {
 			/>
 			<Route
 				path='/admin-listar-nomina'
-				element={
-					<Contenido titulo='Gestionar la nomina' user='user-admin' />
-				}
+				element={<ListarUserNomina />}
 			/>
 			<Route
 				path='/admin-permiso-empleados'
