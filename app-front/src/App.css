@@ -5,9 +5,7 @@ body{
 }
 
 .contenido-centro {
-    background: #4E9F3D;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #1E5128, #4E9F3D);  
-    background: linear-gradient(to right, #1E5128, #4E9F3D); 
+    background-color: #ccdfb5;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -17,7 +15,7 @@ body{
     padding: 40px 20px;
     width: 410px;
     margin: 0 auto;
-    background-color: #1E5128;
+    background-color: #a4d46c;
     color: white;
     border-radius: 5px;
 }

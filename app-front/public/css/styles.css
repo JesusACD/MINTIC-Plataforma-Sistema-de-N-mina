@@ -11,6 +11,8 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/main/LICENSE)
  */
 :root {
+  --bs-carulla:#a4d46c;
+  --bs-carulla-light:#ccdfb5;
   --bs-blue: #0d6efd;
   --bs-indigo: #6610f2;
   --bs-purple: #6f42c1;
@@ -41,6 +43,8 @@
   --bs-danger: #dc3545;
   --bs-light: #f8f9fa;
   --bs-dark: #212529;
+  --bs-carulla-rgb: 164, 212, 108;
+  --bs-carulla-light-rgb: 204, 223, 181;
   --bs-primary-rgb: 13, 110, 253;
   --bs-secondary-rgb: 108, 117, 125;
   --bs-success-rgb: 25, 135, 84;
@@ -5091,7 +5095,7 @@ textarea.form-control-lg {
   color: #212529;
   text-decoration: none;
   background-color: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.125);
+  border: 0.1px solid rgba(255, 255, 255, 1) !important;
 }
 .list-group-item:first-child {
   border-top-left-radius: inherit;
@@ -5358,17 +5362,20 @@ textarea.form-control-lg {
 }
 
 .list-group-item-light {
-  color: #636464;
-  background-color: #fefefe;
+  color: #fff  !important;
+  background-color: #ccdfb5 !important;
+  font-weight: bold;
+
+
 }
 .list-group-item-light.list-group-item-action:hover, .list-group-item-light.list-group-item-action:focus {
-  color: #636464;
-  background-color: #e5e5e5;
+  color: #fff  !important;
+  background-color: #a4d46c  !important;
 }
 .list-group-item-light.list-group-item-action.active {
-  color: #fff;
-  background-color: #636464;
-  border-color: #636464;
+  color: #fff  !important;
+  background-color: #636464  !important;
+  border-color:#664d03;
 }
 
 .list-group-item-dark {
@@ -7791,6 +7798,16 @@ textarea.form-control-lg {
 
 .text-opacity-100 {
   --bs-text-opacity: 1;
+}
+
+.bg-carulla {
+   --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-carulla-rgb), var(--bs-bg-opacity)) !important;
+}
+ 
+ .bg-carulla-light {
+   --bs-bg-opacity: 1;
+  background-color: rgba(var(--bs-carulla-light-rgb), var(--bs-bg-opacity)) !important;
 }
 
 .bg-primary {
@@ -11287,10 +11304,12 @@ textarea.form-control-lg {
 #sidebar-wrapper .sidebar-heading {
   padding: 0.875rem 1.25rem;
   font-size: 1.2rem;
+  color: #fff;
 }
 
 #sidebar-wrapper .list-group {
   width: 15rem;
+  color: #fff;
 }
 
 #page-content-wrapper {
@@ -11314,4 +11333,7 @@ body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
   body.sb-sidenav-toggled #wrapper #sidebar-wrapper {
     margin-left: -15rem;
   }
+}
+footer{
+  color:white;
 }

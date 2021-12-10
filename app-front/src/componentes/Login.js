@@ -121,7 +121,7 @@ const Login = ({ user }) => {
 							</label> */}
 						</div>
 						<div className='login'>
-							<button type='submit' className='btn btn-carulla'>
+							<button type='submit' className='btn btn-success'>
 								Login
 							</button>
 						</div>

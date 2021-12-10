@@ -12,10 +12,11 @@ const TopNavegacion = () => {
 	};
 	const { user } = useContext(DatosDeUsuario);
 	return (
-		<nav className='navbar navbar-expand-lg navbar-light bg-light border-bottom'>
+		<nav className='navbar navbar-expand-lg navbar-dark bg-carulla border-bottom'>
 			<div className='container-fluid'>
-				<button className='btn btn-success' id='sidebarToggle'>
-					Toggle Menu
+				<button className='btn btn-success bg-carulla' id='sidebarToggle'>
+				<i className="fas fa-bars" />
+
 				</button>
 				<button
 					className='navbar-toggler'
@@ -45,17 +46,16 @@ const TopNavegacion = () => {
 							<div
 								className='dropdown-menu dropdown-menu-end'
 								aria-labelledby='navbarDropdown'>
+								<a className='dropdown-item' href='#!'>
+									Mis datos
+								</a>
+						
+							
+								<div className='dropdown-divider'></div>
 								<a
 									className='dropdown-item'
 									onClick={cerrarSesion}>
 									Salir
-								</a>
-								<a className='dropdown-item' href='#!'>
-									Another action
-								</a>
-								<div className='dropdown-divider'></div>
-								<a className='dropdown-item' href='#!'>
-									Something else here
 								</a>
 							</div>
 						</li>

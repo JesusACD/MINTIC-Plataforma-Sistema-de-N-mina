@@ -9,8 +9,8 @@ const Sidebar = () => {
 	const myuser = getUserLocalStorage();
 	const enlaces = listarSidebar(myuser.user);
 	return (
-		<div className='border-end bg-white' id='sidebar-wrapper'>
-			<div className='sidebar-heading border-bottom bg-light'>
+		<div className='border-end bg-carulla-light' id='sidebar-wrapper'>
+			<div className='sidebar-heading border-bottom bg-carulla'>
 				Hola{' '}
 				<span className='fw-bold'>{`${user.nombre} ${user.apellido}`}</span>
 				<p className='fs-6'>
