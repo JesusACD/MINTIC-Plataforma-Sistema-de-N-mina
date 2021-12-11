@@ -20,7 +20,7 @@ const Sidebar = () => {
 			<div className='list-group list-group-flush'>
 				{enlaces.map((link) => (
 					<Link
-						className='list-group-item border-1 list-group-item-action list-group-item-light p-3'
+						className='list-group-item list-group-item-action list-group-item-light p-3'
 						to={link.ruta}>
 						{link.nombre}
 					</Link>
