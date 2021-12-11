@@ -25,31 +25,6 @@ const Sidebar = () => {
 						{link.nombre}
 					</Link>
 				))}
-				{/* <Link
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					to='/home'>
-					Home2
-				</Link>
-				<Link
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					to='/gestion-usuario'>
-					Gestion Usuario
-				</Link>
-				<Link
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					to='/usuario-nomina'>
-					Usuario Nomina
-				</Link>
-				<Link
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					to='/usuario-empleado'>
-					Usuario Empleado
-				</Link>
-				<Link
-					className='list-group-item list-group-item-action list-group-item-light p-3'
-					to='/gestion-nomina'>
-					Gestion Nomina
-				</Link> */}
 			</div>
 		</div>
 	);
