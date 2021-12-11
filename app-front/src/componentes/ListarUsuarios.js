@@ -1,7 +1,7 @@
-import { listarUsuarios } from '../../helper';
+import { listarUsuarios } from '../helper';
 
-const ListarUsuarios = () => {
-	const usuarios = JSON.parse(listarUsuarios('user-empleado'));
+const ListarUsuarios = ({ user }) => {
+	const usuarios = JSON.parse(listarUsuarios(user));
 
 	return (
 		<div className='w-50 p-3 mt-2'>

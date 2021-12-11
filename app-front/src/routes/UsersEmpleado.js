@@ -9,7 +9,7 @@ const UsersEmpleado = () => {
 	return (
 		<Routes>
 			{console.log('estamos dentro de empleados')}
-			<Route path='/mis-datos' element={<MostrarDatos />} />
+			<Route path='/datos-user-empleado' element={<MostrarDatos />} />
 
 			<Route
 				path='/descargar-reporte-pago'

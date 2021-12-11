@@ -4,8 +4,9 @@ import { listarUsuarios } from '../helper';
 export const DatosDeUsuario = createContext();
 
 const UserContextProvider = (props) => {
-	listarUsuarios('user-empleado');
+	
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+	if (user) listarUsuarios(user.user);
 	const [listauser, setListaUser] = useState(
 		JSON.parse(localStorage.getItem('listauser'))
 	);

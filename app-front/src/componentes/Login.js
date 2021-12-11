@@ -24,7 +24,7 @@ const Login = ({ user }) => {
 		if (usuario.username === `${user}@mail.com`) {
 			guardarUserLocalStorage(user);
 			localStorage.setItem('login', true);
-			window.location.href = '/home';
+			window.location.href = `datos-${user}`;
 		} else {
 			setError(true);
 			return;
