@@ -26,7 +26,7 @@ const TopNavegacion = () => {
 					aria-controls='navbarSupportedContent'
 					aria-expanded='false'
 					aria-label='Toggle navigation'>
-					<span className='navbar-toggler-icon'></span>
+					<i class="fas fa-user fa-fw"></i>
 				</button>
 				<div
 					className='collapse navbar-collapse'
