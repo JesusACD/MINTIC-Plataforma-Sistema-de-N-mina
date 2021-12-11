@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router';
 import Contenido from '../componentes/Contenido';
+import ReportePago from '../vistas/admin/ReportePago';
 import MostrarDatos from '../vistas/users/MostrarDatos';
 import UserDatos from '../vistas/users/UserDatos';
 import Vacaciones from '../vistas/users/Vacaciones';
@@ -10,15 +11,7 @@ const UsersEmpleado = () => {
 			{console.log('estamos dentro de empleados')}
 			<Route path='/mis-datos' element={<MostrarDatos />} />
 			<Route path='/solicitar-vacaciones' element={<Vacaciones />} />
-			<Route
-				path='/descargar-reporte-pago'
-				element={
-					<Contenido
-						titulo='Gestionar los usarios nomina'
-						user='user-empleado'
-					/>
-				}
-			/>
+			<Route path='/descargar-reporte-pago' element={<ReportePago />} />
 			<Route
 				path='/solicitar-certificado-laboral'
 				element={
