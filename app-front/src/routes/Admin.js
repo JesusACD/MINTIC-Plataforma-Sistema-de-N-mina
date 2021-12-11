@@ -1,9 +1,10 @@
 import { Route, Routes } from 'react-router';
 import Contenido from '../componentes/Contenido';
-import CrearEmpleado from '../vistas/admin/CrearEmpleado';
+import CrearEmpleado from '../componentes/CrearEmpleado';
 import CrearUsuarioNomina from '../vistas/admin/CrearUsuarioNomina';
 import ListarEmpleados from '../vistas/admin/ListarEmpleados';
 import ListarUserNomina from '../vistas/admin/ListarUserNomina';
+
 
 const Admin = () => {
 	return (

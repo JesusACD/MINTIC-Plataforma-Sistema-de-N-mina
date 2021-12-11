@@ -1,19 +1,12 @@
 import { Route, Routes } from 'react-router';
 import Contenido from '../componentes/Contenido';
+import CrearEmpleado from '../componentes/CrearEmpleado';
 import ListarUsuarios from '../vistas/nomina/ListarUsuarios';
 
 const UsersNomina = () => {
 	return (
 		<Routes>
-			<Route
-				path='/crear-empleados'
-				element={
-					<Contenido
-						titulo='Este es mi home de user nomina'
-						user='user-nomina'
-					/>
-				}
-			/>
+			<Route path='/crear-empleados' element={<CrearEmpleado />} />
 			<Route path='/listar-empleados' element={<ListarUsuarios />} />
 			<Route
 				path='/permiso-empleados'
