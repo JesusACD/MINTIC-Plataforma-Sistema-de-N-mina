@@ -1,0 +1,36 @@
+{
+  "name": "app-nomina-backend",
+  "version": "0.1.0",
+  "description": "Backend de la aplicacion de control de nomina",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JesusACD/MINTIC-Plataforma-Sistema-de-N-mina.git"
+  },
+  "keywords": [
+    "backend",
+    "nomina"
+  ],
+  "author": "equipo 9- Grupo 25 MisionTic",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/JesusACD/MINTIC-Plataforma-Sistema-de-N-mina/issues"
+  },
+  "homepage": "https://github.com/JesusACD/MINTIC-Plataforma-Sistema-de-N-mina#readme",
+  "dependencies": {
+    "bcrypt": "^5.0.1",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "jsonwebtoken": "^8.5.1",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.0.15",
+    "nodemailer": "^6.7.2"
+  },
+  "devDependencies": {
+    "dotenv": "^10.0.0",
+    "nodemon": "^2.0.15"
+  }
+}
