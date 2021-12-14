@@ -1,8 +1,8 @@
 import { Route, Routes } from 'react-router';
-import Contenido from '../componentes/Contenido';
+//import Contenido from '../componentes/Contenido';
 import DescargarDocumentos from '../vistas/admin/DescargarDocumentos';
 import MostrarDatos from '../vistas/users/MostrarDatos';
-import UserDatos from '../vistas/users/UserDatos';
+//import UserDatos from '../vistas/users/UserDatos';
 import Vacaciones from '../vistas/users/Vacaciones';
 
 const UsersEmpleado = () => {
