@@ -1,6 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route} from 'react-router-dom';
 import Login from './componentes/Login';
 import Sidebar from './componentes/Sidebar';
 import TopNavegacion from './componentes/TopNavegacion';
@@ -11,6 +11,8 @@ import Admin from './routes/Admin';
 import { getUserLocalStorage } from './helper';
 import UserContextProvider from './context/UserContext';
 import Footer from './componentes/Footer';
+import Error404 from './componentes/Error404';
+import { useForm } from 'react-hook-form';
 
 function App() {
 	// Estado para el usuario logueado
@@ -33,10 +35,12 @@ function App() {
 			<BrowserRouter>
 				{!useractivo ? (
 					<Routes>
+					
 						<Route
 							exact
 							path='/empleado-login'
 							element={<Login user='user-empleado' />}
+				
 						/>
 						<Route
 							exact
@@ -53,6 +57,12 @@ function App() {
 							path='/'
 							element={<Login user='user-empleado' />}
 						/>
+						<Route
+                       
+						path='*'
+						element={<Error404 />}
+						/>
+					
 					</Routes>
 				) : (
 					<><div className='d-flex' id='wrapper'>

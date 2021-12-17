@@ -53,17 +53,14 @@ export function listarSidebar(user) {
 	switch (user) {
 		case 'user-empleado':
 			rutas = [
-				{
-					ruta: '/solicitar-vacaciones',
-					nombre: 'Solicitar Vacaciones',
-				},
+			
 				{
 					ruta: '/descargar-reporte-pago',
 					nombre: 'Descargar Reporte de Pago',
 				},
 				{
 					ruta: '/solicitar-certificado-laboral',
-					nombre: 'Certificado Laborar',
+					nombre: 'Certificado Laboral',
 				},
 				{
 					ruta: '/solicitar-vacaciones',
@@ -107,7 +104,7 @@ export function listarSidebar(user) {
 				},
 				{
 					ruta: '/admin-crear-nominas',
-					nombre: 'Crear Usuario Nomina',
+					nombre: 'Crear Usuario Nómina',
 				},
 				{
 					ruta: '/admin-listar-empleados',
@@ -115,7 +112,7 @@ export function listarSidebar(user) {
 				},
 				{
 					ruta: '/admin-listar-nomina',
-					nombre: 'Listar Usuarios Nomina',
+					nombre: 'Listar Usuarios Nómina',
 				},
 				{
 					ruta: '/admin-permiso-empleados',
