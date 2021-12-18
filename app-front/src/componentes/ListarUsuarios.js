@@ -2,9 +2,16 @@ import { useContext } from 'react';
 import { DatosDeUsuario } from '../context/UserContext';
 
 const ListarUsuarios = ({ user }) => {
-	const { result } = useContext(DatosDeUsuario);
-	const usuarios = result;
-	console.log('mis usuarios', usuarios);
+	const { result, resultempleado } = useContext(DatosDeUsuario);
+	let res = {};
+
+	if (user === 'user-nomina') {
+		res.usuarios = result;
+	} else {
+		res.usuarios = resultempleado;
+	}
+	const usuarios = res.usuarios;
+	console.log('mis usuarios', usuarios); 
 
 	return (
 		<div className='w-50 p-3 mt-2'>

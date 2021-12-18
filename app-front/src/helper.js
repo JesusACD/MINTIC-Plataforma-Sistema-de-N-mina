@@ -43,6 +43,7 @@ export function guardarUserLocalStorage(user, data) {
 				apellido: 'Ozuna',
 				telefono: 3066785432,
 				cedula: 10653245588,
+				data,
 			};
 			// const logearUser = async () => {
 			// 	const url = '';

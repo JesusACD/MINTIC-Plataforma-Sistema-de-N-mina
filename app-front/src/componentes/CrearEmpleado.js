@@ -1,6 +1,7 @@
 import { useContext, useState } from 'react';
 import Exito from './Exito';
 import { DatosDeUsuario } from '../context/UserContext';
+import axios from 'axios';
 
 const CrearEmpleado = () => {
 	const [users, setUsers] = useState({
@@ -11,7 +12,7 @@ const CrearEmpleado = () => {
 		cedula: '',
 	});
 	const { email, nombre, apellido, telefono, cedula } = users;
-	const { listauser, setListaUser } = useContext(DatosDeUsuario);
+	const { actrualizarListaEmpleado } = useContext(DatosDeUsuario);
 	const [exito, setExito] = useState(false);
 
 	const handlerUser = (e) => {
@@ -21,9 +22,20 @@ const CrearEmpleado = () => {
 		});
 	};
 
+	const CrearUserNominaAPI = async () => {
+		const url =
+			'https://app-nomina-project.herokuapp.com/user/register-employee';
+		let userData = JSON.parse(localStorage.getItem('user'));
+
+		const listUser = await axios.post(url, users, {
+			headers: { 'access-token': userData.data.token },
+		});
+		console.log(listUser.data);
+		actrualizarListaEmpleado(true);
+	};
+
 	const handlerSudmit = (e) => {
 		e.preventDefault();
-		setListaUser([...listauser, users]);
 		if (
 			email.trim() === '' ||
 			nombre.trim() === '' ||

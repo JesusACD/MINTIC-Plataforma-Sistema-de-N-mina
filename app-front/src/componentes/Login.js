@@ -21,7 +21,17 @@ const Login = ({ user }) => {
 		e.preventDefault();
 
 		const logearUser = async () => {
-			const url = 'https://app-nomina-project.herokuapp.com/admin/login';
+			let ur = {};
+			if (user === 'user-admin') {
+				ur.url = 'https://app-nomina-project.herokuapp.com/admin/login';
+			} else if (user === 'user-empleado') {
+				ur.url =
+					'https://app-nomina-project.herokuapp.com/employee/login';
+			} else {
+				ur.url = 'https://app-nomina-project.herokuapp.com/user/login';
+			}
+			const url = ur.url;
+
 			try {
 				const result = await axios.post(url, usuario);
 				console.log(result.data);
@@ -38,16 +48,6 @@ const Login = ({ user }) => {
 			}
 		};
 		logearUser();
-
-		// if (usuario.username === `${user}@mail.com`) {
-		// 	guardarUserLocalStorage(user);
-		// 	localStorage.setItem('login', true);
-		// 	window.location.href = `datos-${user}`;
-		// 	// Navigate(`datos-${user}`);
-		// } else {
-		// 	setError(true);
-		// 	return;
-		// }
 	};
 	return (
 		<Fragment>
