@@ -41,20 +41,20 @@ router.post('/register-user', validAdmin, async(req, res)=>{
 });
 
 
-router.post('/register-admin',validAdmin, async(req, res)=>{
-    const {nombre, apellido, email, telefono} = req.body;
-    if (!nombre|| !apellido || !email || !telefono){
+router.post('/register-admin', validAdmin, async(req, res)=>{
+    const {nombre, apellido, email, telefono, password1, password2} = req.body;
+    if (!nombre|| !apellido || !email || !telefono || !password1 || !password2){
         return res.status(400).json({msg: 'Debe enviar todos los datos solicitados.'})
     }
     let admin = await Admin.findOne({ email: email });
     if (admin) return res.status(400).json({msg: 'Admin ya se encuentra registrado.'});
-
-    const randomstring = Math.random().toString(36).slice(-6);
-    const password = randomstring.toUpperCase();
+    if(password1 !== password2) return res.status(400).json({msg: 'Las contraseñas no coinciden!'})
+    const salt = await bcrypt.genSalt(10);
+    const password = password1;
+    const passwordhash = await bcrypt.hash(password, salt);
     const isAdmin = true;
     admin = new Admin(_.pick(req.body, ['nombre', 'apellido','email', 'telefono'], password, isAdmin));
-    const salt = await bcrypt.genSalt(10);
-    admin.password = await bcrypt.hash(password, salt);
+    admin.password = passwordhash;
     admin.isAsdmin= true;
     try {
         await admin.save()
@@ -65,10 +65,6 @@ router.post('/register-admin',validAdmin, async(req, res)=>{
         console.log(error)
         res.status(500).json({msg:'Algo salió mal!'});
     }
-    
-    //envio del email con el password
-    const rol = "Usuario Administrador"
-    sendMail(password, email, rol, true);
     return res.status(200).json({msg: `El usuario Admin ${nombre} ${apellido} se registró exitosamente.`});
 });
 
