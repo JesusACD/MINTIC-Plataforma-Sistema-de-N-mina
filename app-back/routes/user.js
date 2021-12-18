@@ -1,6 +1,8 @@
 const express = require('express');
 const {User} = require('../models/users');
 const {Employee}= require('../models/employees');
+const {Permission}= require('../models/permissions');
+const {Vacation}= require('../models/vacations');
 const bcrypt = require('bcrypt');
 const {sendMail} = require('../config/sendmail');
 const _ = require('lodash');
@@ -11,14 +13,14 @@ const router = express.Router();
 router.post('/login', async (req, res)=>{
     const {email, password} = req.body;
     let auth = false;
-    const user = await User.findOne({email});
+    const user = await User.findOne({email}).select('-password');
     if(!user) return res.status(400).json({auth: auth, msg: 'Usuario no se encuentra registrado.'})
     if(!user.enabled) return res.status(401).json({msg: 'Usuario desactivado, consulte con el administrador del sistema.'})
     const validPassword = await bcrypt.compare(password, user.password);
     if (!validPassword) return res.status(400).json({auth: auth, msg: 'Contraseña incorrecta.'});
     const token = user.generateAuthToken();
     auth= true;
-    return res.status(200).json({auth: auth, token: token, msg: 'Usuario logueado!'});
+    return res.status(200).json({auth: auth, user: user, token: token, msg: 'Usuario logueado!'});
 })
 
 router.post('/register-employee', validNomina, async(req, res)=>{
