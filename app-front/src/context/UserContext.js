@@ -1,22 +1,35 @@
-import React, { createContext, useState } from 'react';
+import axios from 'axios';
+import React, { createContext, useEffect, useState } from 'react';
 import { listarUsuarios } from '../helper';
 
 export const DatosDeUsuario = createContext();
 
 const UserContextProvider = (props) => {
-	
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
-	if (user) listarUsuarios(user.user);
-	const [listauser, setListaUser] = useState(
-		JSON.parse(localStorage.getItem('listauser'))
-	);
+	const [result, guardarResult] = useState([]);
+
+	useEffect(() => {
+		const ListarUsersAPI = async () => {
+			const url =
+				'https://app-nomina-project.herokuapp.com/admin/get-users';
+			let userData = JSON.parse(localStorage.getItem('user'));
+
+			const listUser = await axios.get(url, {
+				params: '',
+				headers: { 'access-token': userData.data.token },
+			});
+			console.log(listUser.data);
+			guardarResult(listUser.data);
+		};
+		ListarUsersAPI();
+	}, []);
+
 	return (
 		<DatosDeUsuario.Provider
 			value={{
 				user,
 				setUser,
-				listauser,
-				setListaUser,
+				result,
 			}}>
 			{props.children}
 		</DatosDeUsuario.Provider>

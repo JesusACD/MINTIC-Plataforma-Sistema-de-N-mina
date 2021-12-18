@@ -1,3 +1,5 @@
+import axios from 'axios';
+
 export function obtenerUsuarios(user) {
 	let myuser;
 	switch (user) {
@@ -15,7 +17,7 @@ export function obtenerUsuarios(user) {
 	}
 	return myuser;
 }
-export function guardarUserLocalStorage(user) {
+export function guardarUserLocalStorage(user, data) {
 	let myuser;
 	switch (user) {
 		case 'user-empleado':
@@ -27,12 +29,35 @@ export function guardarUserLocalStorage(user) {
 				telefono: 3056785432,
 				cedula: 10653245577,
 			};
+
+			// const logearUser = async () => {
+			// 	const url = '';
+			// };
+
 			break;
 		case 'user-nomina':
-			myuser = { email: 'user-nomina@mail.com', user: 'user-nomina', nombre: 'Manolo',apellido: 'Ozuna',telefono: 3066785432,cedula: 10653245588 };
+			myuser = {
+				email: 'user-nomina@mail.com',
+				user: 'user-nomina',
+				nombre: 'Manolo',
+				apellido: 'Ozuna',
+				telefono: 3066785432,
+				cedula: 10653245588,
+			};
+			// const logearUser = async () => {
+			// 	const url = '';
+			// };
 			break;
 		case 'user-admin':
-			myuser = { email: 'user-admin@mail.com', user: 'user-admin', nombre: 'Giovanny',apellido: 'Cruz',telefono: 3076785432,cedula: 10653245599 };
+			myuser = {
+				email: 'admin@appnomina.com',
+				user: 'user-admin',
+				nombre: 'Giovanny',
+				apellido: 'Cruz',
+				telefono: 3076785432,
+				cedula: 10653245599,
+				data,
+			};
 			break;
 		default:
 			break;
@@ -191,6 +216,19 @@ export function listarUsuarios(user) {
 			];
 			break;
 		case 'user-nomina':
+			// const ListarUsersAPI = async () => {
+			// 	const url =
+			// 		'https://app-nomina-project.herokuapp.com/admin/get-users';
+			// 	const listUser = await axios.get(url, {
+			// 		params: '',
+			// 		headers: { 'access-token': userData.data.token },
+			// 	});
+			// 	console.log(listUser.data);
+			// 	myuser = listUser.data;
+			// 	localStorage.setItem('listauser', JSON.stringify(myuser));
+			// };
+			// ListarUsersAPI();
+
 			myuser = [
 				{
 					id: 1,
@@ -252,6 +290,7 @@ export function listarUsuarios(user) {
 		default:
 			break;
 	}
+	console.log('lo que entra', myuser);
 	localStorage.setItem('listauser', JSON.stringify(myuser));
 	return JSON.stringify(myuser);
 }

@@ -1,7 +1,10 @@
-import { listarUsuarios } from '../helper';
+import { useContext } from 'react';
+import { DatosDeUsuario } from '../context/UserContext';
 
 const ListarUsuarios = ({ user }) => {
-	const usuarios = JSON.parse(listarUsuarios(user));
+	const { result } = useContext(DatosDeUsuario);
+	const usuarios = result;
+	console.log('mis usuarios', usuarios);
 
 	return (
 		<div className='w-50 p-3 mt-2'>

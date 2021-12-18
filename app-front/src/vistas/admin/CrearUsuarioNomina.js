@@ -11,7 +11,8 @@ const CrearUsuarioNomina= () => {
 		cedulaUserNomina: '',
 	});
 	const { emailUserNomina, nombreUserNomina, apellidoUserNomina, telefonoUserNomina, cedulaUserNomina } = users;
-	const { listauser, setListaUser } = useContext(DatosDeUsuario);
+	const { listauser, setListaUser, setEjecutarLista } =
+		useContext(DatosDeUsuario);
 	const [exito, setExito] = useState(false);
 
 	const handlerUser = (e) => {
@@ -33,6 +34,7 @@ const CrearUsuarioNomina= () => {
 		) {
 			return null;
 		}
+		setEjecutarLista(true);
 		setExito(true);
 		setUsers({
 			emailUserNomina: '',

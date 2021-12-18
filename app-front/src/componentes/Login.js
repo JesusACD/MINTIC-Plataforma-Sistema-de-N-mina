@@ -1,13 +1,11 @@
+import axios from 'axios';
 import React, { Fragment, useState } from 'react';
 import { getUserLocalStorage, guardarUserLocalStorage } from '../helper';
 
 const Login = ({ user }) => {
-	// setUsuariologin(false);
-
 	// Estado para los campos del formulario
-
 	const [usuario, setUsuario] = useState({
-		username: '',
+		email: '',
 		password: '',
 	});
 	const [error, setError] = useState(false);
@@ -21,14 +19,35 @@ const Login = ({ user }) => {
 	// funcion para validar un usuario
 	const validadUser = (e) => {
 		e.preventDefault();
-		if (usuario.username === `${user}@mail.com`) {
-			guardarUserLocalStorage(user);
-			localStorage.setItem('login', true);
-			window.location.href = `datos-${user}`;
-		} else {
-			setError(true);
-			return;
-		}
+
+		const logearUser = async () => {
+			const url = 'https://app-nomina-project.herokuapp.com/admin/login';
+			try {
+				const result = await axios.post(url, usuario);
+				console.log(result.data);
+				if (result.data.auth) {
+					guardarUserLocalStorage(user, result.data);
+					localStorage.setItem('login', true);
+					window.location.href = `datos-${user}`;
+				} else {
+					setError(true);
+					return null;
+				}
+			} catch (err) {
+				console.log(err);
+			}
+		};
+		logearUser();
+
+		// if (usuario.username === `${user}@mail.com`) {
+		// 	guardarUserLocalStorage(user);
+		// 	localStorage.setItem('login', true);
+		// 	window.location.href = `datos-${user}`;
+		// 	// Navigate(`datos-${user}`);
+		// } else {
+		// 	setError(true);
+		// 	return;
+		// }
 	};
 	return (
 		<Fragment>
@@ -79,14 +98,14 @@ const Login = ({ user }) => {
 					</h3>
 					<form onSubmit={validadUser}>
 						<div className='form-group'>
-							<label htmlFor='exampleInputEmail1'>Email</label>
+							<label htmlFor='email'>Email</label>
 							<input
 								type='email'
 								className='form-control'
-								id='exampleInputEmail1'
+								id='email'
 								aria-describedby='emailHelp'
 								placeholder='Enter email'
-								name='username'
+								name='email'
 								onChange={actualizarUsuario}
 							/>
 							{/* <small
@@ -96,13 +115,11 @@ const Login = ({ user }) => {
 							</small> */}
 						</div>
 						<div className='form-group'>
-							<label htmlFor='exampleInputPassword1'>
-								Password
-							</label>
+							<label htmlFor='password'>Password</label>
 							<input
 								type='password'
 								className='form-control'
-								id='exampleInputPassword1'
+								id='password'
 								placeholder='Password'
 								name='password'
 								onChange={actualizarUsuario}
