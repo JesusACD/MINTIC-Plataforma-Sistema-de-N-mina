@@ -72,13 +72,14 @@ router.post('/register-admin', validAdmin, async(req, res)=>{
 router.post('/login', async(req, res)=>{
     const {email, password} = req.body;
     let auth = false;
-    const admin = await Admin.findOne({email}).select('-password');
+    let admin = await Admin.findOne({email});
     if(!admin) return res.status(400).json({auth: auth, msg: 'Usuario no se encuentra registrado.'})
     if(!admin.isAdmin) return res.status(400).json({msg: 'Usuario fue desactivado, consulte con el adminstrador de sistema.'})
     const validPassword = await bcrypt.compare(password, admin.password);
     if (!validPassword) return res.status(400).json({auth: auth, msg: 'Contraseña incorrecta.'});
     const token = admin.generateAuthToken();
     auth= true;
+    admin = await Admin.findOne({email}).select('-password');
     return res.status(200).json({auth: auth, user: admin, token: token, msg: 'Admin logueado!'});
 });
 
