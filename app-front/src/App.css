@@ -3,7 +3,18 @@ body{
     margin: 0;
     padding: 0;
 }
-
+a {
+    color: #4d7448 !important;
+}
+/* .fw-bold {
+    color: #4d7448 !important;
+} */
+.bg-carulla > * {
+    color: #4d7448 !important;
+}
+div .bg-carulla{
+    color: #4d7448 !important;
+}
 .contenido-centro {
     background-color: #ccdfb5;
     height: 100vh;

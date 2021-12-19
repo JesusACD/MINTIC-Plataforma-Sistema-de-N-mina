@@ -4,7 +4,7 @@ import { DatosDeUsuario } from '../context/UserContext';
 
 const TopNavegacion = () => {
 	const { myuser, user } = useContext(DatosDeUsuario);
-	const { nombre, apellido } = myuser;
+	const { nombre, apellido, cargo } = myuser;
 	const cerrarSesion = () => {
 		localStorage.removeItem(user.user);
 		localStorage.removeItem('admin');
@@ -44,7 +44,7 @@ const TopNavegacion = () => {
 								data-bs-toggle='dropdown'
 								aria-haspopup='true'
 								aria-expanded='false'>
-								{`${nombre} ${apellido}`}
+								{`${nombre} ${apellido} | ${cargo}`}
 							</a>
 							<div
 								className='dropdown-menu dropdown-menu-end'

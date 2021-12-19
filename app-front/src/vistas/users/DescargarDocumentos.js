@@ -7,19 +7,23 @@ const DescargarDocumentos = ({ title, boton }) => {
 	const descargarCertificado = () => {
 		setCargar(true);
 		const id = JSON.parse(localStorage.getItem('user')).data.user._id;
-
+		let ur = {};
 		if (title === 'Solicitar Certificado Laboral') {
-			const url = `https://app-nomina-project.herokuapp.com/employee/get-cert/${id}`;
-			axios
-				.get(url)
-				.then((e) => {
-					console.log(e.status);
-					setCargar(false);
-				})
-				.catch((error) => {
-					setCargar(false);
-				});
+			ur.url = `https://app-nomina-project.herokuapp.com/employee/get-cert/${id}`;
+		} else if (title === 'Descargar Reporte de Pago') {
+			ur.url = `https://app-nomina-project.herokuapp.com/employee/report_payment/${id}`;
 		}
+		const url = ur.url;
+		axios
+			.get(url)
+			.then((e) => {
+				console.log(e.status);
+				setCargar(false);
+			})
+			.catch((error) => {
+				setCargar(false);
+			});
+		
 	};
 	return (
 		<>
