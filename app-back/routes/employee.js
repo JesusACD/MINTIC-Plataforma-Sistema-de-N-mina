@@ -7,7 +7,9 @@ const jwt = require('jsonwebtoken');
 const { jwtKey } = require('../config/keys');
 const { Vacation } = require('../models/vacations');
 const { Permission } = require('../models/permissions');
-
+const { genpdf } = require('../utils/pdf');
+const path = require('path');
+const { Console } = require('console');
 const router = express.Router();
 
 router.post('/login', async (req, res)=>{
@@ -92,6 +94,23 @@ router.post('/permission', validEmployee, async(req, res)=>{
         return res.status(500).json({msg: 'Algo salió mal!'})
     }
     return res.status(200).json({msg:'Se registró exitosamente la solicitud.'})
+})
+
+router.get('/get-cert/:id', async(req, res)=>{
+    const id = req.params.id;
+    const employee =  await Employee.findById(id);
+    const {nombre, apellido, cedula, cargo, salario, fecha_contrato} = employee
+    const fecha = new Date()
+    const day = fecha.getUTCDate();
+    const mes = fecha.toLocaleString('default', { month: 'long' });
+    const year = fecha.getFullYear();
+    const fecha_string = `${mes} ${day}/${year}`
+    const salariof= salario.toLocaleString('en-US', {currency: 'COP'})
+    console.log(salariof)
+    await genpdf(nombre, apellido, cedula, cargo, salariof, fecha_string, fecha_contrato);
+    setTimeout(()=>{
+        return res.download(path.join(__dirname, '..', `/utils/${cedula}.pdf`))
+    },3000)
 })
 
 module.exports = router;
