@@ -7,9 +7,11 @@ const jwt = require('jsonwebtoken');
 const { jwtKey } = require('../config/keys');
 const { Vacation } = require('../models/vacations');
 const { Permission } = require('../models/permissions');
-const { genpdf } = require('../utils/pdf');
+const { genpdf, pagopdf } = require('../utils/pdf');
 const path = require('path');
-const { Console } = require('console');
+const { Payment } = require('../models/payments');
+
+
 const router = express.Router();
 
 router.post('/login', async (req, res)=>{
@@ -98,19 +100,52 @@ router.post('/permission', validEmployee, async(req, res)=>{
 
 router.get('/get-cert/:id', async(req, res)=>{
     const id = req.params.id;
-    const employee =  await Employee.findById(id);
-    const {nombre, apellido, cedula, cargo, salario, fecha_contrato} = employee
-    const fecha = new Date()
-    const day = fecha.getUTCDate();
-    const mes = fecha.toLocaleString('default', { month: 'long' });
-    const year = fecha.getFullYear();
-    const fecha_string = `${mes} ${day}/${year}`
-    const salariof= salario.toLocaleString('en-US', {currency: 'COP'})
-    console.log(salariof)
-    await genpdf(nombre, apellido, cedula, cargo, salariof, fecha_string, fecha_contrato);
-    setTimeout(()=>{
-        return res.download(path.join(__dirname, '..', `/utils/${cedula}.pdf`))
-    },3000)
+    let employee = {};
+    try {
+        employee =  await Employee.findById(id);
+        const {nombre, apellido, cedula, cargo, salario, fecha_contrato} = employee
+        const fecha = new Date()
+        const day = fecha.getUTCDate();
+        const mes = fecha.toLocaleString('default', { month: 'long' });
+        const year = fecha.getFullYear();
+        const fecha_string = `${mes} ${day}/${year}`
+        const salariof= salario.toLocaleString('en-US', {currency: 'COP'})
+        await genpdf(nombre, apellido, cedula, cargo, salariof, fecha_string, fecha_contrato);
+        setTimeout(()=>{
+            return res.download(path.join(__dirname, '..', `/utils/${cedula}.pdf`))
+        },3000)
+    } catch (error) {
+        return res.status(400).json({msg: 'Error en los datos enviados!'})
+    }
+})
+
+router.get('/report_payment/:id', async(req, res)=>{
+    const id = req.params.id;
+    let employee = {};
+    try {
+        employee =  await Employee.findById(id);
+    } catch (error) {
+        return res.status(400).json({msg: 'Error en el id enviado!'})
+    }
+    try {
+        let {nombre, apellido, cedula, cargo, salario} = employee
+        const payment = await Payment.findOne({cedula})
+        let {mes_pago, fecha_pago, pagos_extras_mes, permisos_NR_mes, descuentos_ley, total_pago}= payment;
+        const fecha = new Date(fecha_pago);
+        const ano = fecha.getFullYear();
+        const mes_num = fecha.getMonth() + 1
+        salario= salario.toLocaleString('en-US', {currency: 'COP'});
+        pagos_extras_mes= pagos_extras_mes.toLocaleString('en-US', {currency: 'COP'});
+        permisos_NR_mes= permisos_NR_mes.toLocaleString('en-US', {currency: 'COP'}); 
+        descuentos_ley= descuentos_ley.toLocaleString('en-US', {currency: 'COP'}); 
+        total_pago= total_pago.toLocaleString('en-US', {currency: 'COP'}); 
+        await pagopdf(mes_pago, mes_num, ano, nombre, apellido, cedula, cargo, salario, pagos_extras_mes, descuentos_ley, permisos_NR_mes,total_pago);
+        setTimeout(()=>{
+            return res.download(path.join(__dirname, '..', `/utils/${cedula}-${mes_num}-${ano}.pdf`))
+        },3000)
+    } catch (error) {
+        return res.status(400).json({msg: 'Error en los datos enviados!'})
+    }
 })
 
 module.exports = router;
