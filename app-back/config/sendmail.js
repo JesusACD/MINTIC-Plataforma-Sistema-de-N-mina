@@ -18,7 +18,7 @@ function sendLinkForgot(to, token){
         from: 'appnomina.carulla@gmail.com',
         to: to,
         subject: 'Link recuperación de contraseña',
-        html: `<p>Recupere su contraseña: <a href=http://localhost:3001/general/reset-password/${token}>Click aquí</a></p>`
+        html: `<p>Recupere su contraseña: <a href=https://app-nomina-project.herokuapp.com/general/reset-password/${token}>Click aquí</a></p>`
         //href=https://app-nomina-project.herokuapp.com/
         //href=http://localhost:3001
     };
