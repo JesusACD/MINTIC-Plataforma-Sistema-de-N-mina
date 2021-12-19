@@ -175,7 +175,7 @@ const CrearEmpleado = () => {
 									<input
 										className='form-control'
 										id='fecha_contrato'
-										type='text'
+										type='date'
 										placeholder='fecha de contrato'
 										name='fecha_contrato'
 										onChange={handlerUser}

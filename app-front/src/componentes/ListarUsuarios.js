@@ -67,6 +67,10 @@ const ListarUsuarios = ({ userTabla }) => {
 						<th scope='col'>Apellido</th>
 						<th scope='col'>Teléfono</th>
 						<th scope='col'>Cédula</th>
+						<th scope='col'>Cargo</th>
+						<th scope='col'>Salario</th>
+						<th scope='col'>Fecha de Contratación</th>
+						<th scope='col'>Aprobar Vacaciones</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -78,6 +82,10 @@ const ListarUsuarios = ({ userTabla }) => {
 								<td>{e.apellido}</td>
 								<td>{e.telefono}</td>
 								<td>{e.cedula}</td>
+								<td>{e.cargo}</td>
+								<td>{e.salario}</td>
+								<td>{e.fecha_contrato}</td>
+								<td>{e.vacations || 'No hay solicitud'}</td>
 								<td>
 									<button
 										className='btn btn-primary'

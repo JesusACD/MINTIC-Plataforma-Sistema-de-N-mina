@@ -25,7 +25,7 @@ const UsersEmpleado = () => {
 				element={
 					<DescargarDocumentos
 						title='Solicitar Certificado Laboral'
-						boton='Solicitar'
+						boton='Descargar'
 					/>
 				}
 			/>

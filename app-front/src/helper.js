@@ -98,14 +98,6 @@ export function listarSidebar(user) {
 					nombre: 'Listar Empleados',
 				},
 				{
-					ruta: '/permiso-empleados',
-					nombre: 'Permiso Empleados',
-				},
-				{
-					ruta: '/vacaciones-empleados',
-					nombre: 'Vacaciones Empleados',
-				},
-				{
 					ruta: '/reportes',
 					nombre: 'Reportes',
 				},
