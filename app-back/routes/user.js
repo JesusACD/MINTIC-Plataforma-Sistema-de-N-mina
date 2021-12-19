@@ -7,6 +7,7 @@ const bcrypt = require('bcrypt');
 const {sendMail} = require('../config/sendmail');
 const _ = require('lodash');
 const { validNomina, validAdmin } = require('../config/auth');
+const { Payments } = require('../models/payments');
 
 const router = express.Router();
 
@@ -60,7 +61,7 @@ router.post('/register-employee', validNomina, async(req, res)=>{
 });
 
 router.get('/get-employees', validNomina, async(req, res)=>{
-    const employees = await Employee.find({status: {$ne:'I'}}).sort('cedula');
+    const employees = await Employee.find({enabled: {$ne:false}}).sort('cedula');
     return res.status(200).json(employees)
 })
 
@@ -75,7 +76,7 @@ router.put('/update-employee/:id', validNomina, async(req, res)=>{
     const id = req.params.id;
     let employeeUpdate = {};
     try {
-        await Employee.findByIdAndUpdate(id, _.pick(req.body, ['nombre', 'apellido', 'cedula','email', 'telefono', 'cargo', 'salario', 'fecha_contrato'], { new: true }));
+        await Employee.findByIdAndUpdate(id, _.pick(req.body, ['nombre', 'apellido', 'cedula','email', 'telefono', 'cargo', 'salario', 'fecha_contrato', 'pagos_extras_mes'], { new: true }));
         employeeUpdate = await Employee.findById(id).select('-password');
     } catch (error) {
         return res.status(404).json({msg: 'No fue posible ejecutar la actualización. Revise los datos!'});
@@ -103,7 +104,7 @@ router.put('/update/:id', validNomina, async(req, res)=>{
 router.put('/delete-employee/:id', validNomina, async(req, res)=>{
     const id = req.params.id;
     try {
-        await Employee.findByIdAndUpdate(id, {status: 'I'}, { new: true });  
+        await Employee.findByIdAndUpdate(id, {enabled: false, status: "I"}, { new: true });  
     } catch (error) {
         return res.status(404).json({msg: 'No fue posible ejecutar la operación. Revise los datos!'});
     }
@@ -134,6 +135,35 @@ router.get('/get-vacations', validNomina, async(req, res)=>{
 router.get('/get-permissions', validNomina, async(req, res)=>{
     const permissions = await Permission.find({aprobado: {$eq:false}});
     res.status(200).json({permisos: permissions})
+})
+
+//pagar nómina
+router.get('/payments', validNomina, async(req, res)=>{
+    const employees = await Employee.find({status: {$ne:'I'}}).sort('cedula');
+    len = employees.length;
+    const today = new Date("11-30-2021");
+    // const today = new Date();
+    const fecha_pago = today.toLocaleDateString("en-US");
+    const mes_pago= today.toLocaleString('default', { month: 'long' });
+    employees.forEach(async (employee)=>{
+        let {nombre, apellido, cedula, cargo, salario, pagos_extras_mes, pnr_mes } = employee;
+        const payment = new Payments({fecha_pago, mes_pago, nombre, apellido, cedula, cargo, salario, pagos_extras_mes})
+        const _descuentos_ley=  salario * 0.08;
+        payment.descuentos_ley = _descuentos_ley.toFixed(2);
+        const _permisos_NR_mes = pnr_mes * salario / 30;
+        payment.permisos_NR_mes = _permisos_NR_mes.toFixed(2);
+        const _total_pago = salario.toFixed(2) + pagos_extras_mes - payment.descuentos_ley - payment.permisos_NR_mes;
+        payment.total_pago = _total_pago.toFixed(2);
+        await payment.save()
+        .then((data)=>{console.log('Payment ok!')})
+        .catch(err => (`No se pudo realizar el pago del usuario ${nombre} ${apellido}`))
+        const _employee = await Employee.findOneAndUpdate({cedula}, {pnr_mes: 0, pagos_extras_mes: 0 })
+
+    })
+
+    return res.status(200).json({msg: 'Se ejecutó la operación correctamente.'})
+
+
 })
 
 

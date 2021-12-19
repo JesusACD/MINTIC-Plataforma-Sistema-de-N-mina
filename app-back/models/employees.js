@@ -18,7 +18,8 @@ const employeeSchema = new mongoose.Schema({
         type: Number,
         required: true,
         minlength: 5,
-        maxlength: 20
+        maxlength: 20,
+        unique: true
     },
     email: {
         type: String,
@@ -58,11 +59,27 @@ const employeeSchema = new mongoose.Schema({
     status: {
         type: String
     },
+    enabled: {
+        type: Boolean,
+        default: true
+    },
     vacations: {
         type: Boolean,
         default: false
     },
-    permissions:{
+    pagos_extras_mes: {
+        type: Number,
+        default: 0
+    },
+    permissions_nrem:{
+        type: Number,
+        default: 0
+    },
+    pnr_mes: {
+        type: Number,
+        default: 0
+    },
+    permissions_rem : {
         type: Number,
         default: 0
     }
