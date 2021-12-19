@@ -106,7 +106,6 @@ router.get('/get-cert/:id', async(req, res)=>{
     const year = fecha.getFullYear();
     const fecha_string = `${mes} ${day}/${year}`
     const salariof= salario.toLocaleString('en-US', {currency: 'COP'})
-    console.log(salariof)
     await genpdf(nombre, apellido, cedula, cargo, salariof, fecha_string, fecha_contrato);
     setTimeout(()=>{
         return res.download(path.join(__dirname, '..', `/utils/${cedula}.pdf`))
