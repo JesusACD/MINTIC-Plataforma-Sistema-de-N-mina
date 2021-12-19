@@ -56,8 +56,7 @@ const paymentSchema = new mongoose.Schema({
     },
     total_pago: {
         type: Number,
-        maxlength: 20,
-        default: this.salario + this.pagos_extras_mes - this.descuentos_ley - this.permisos_NoRem
+        maxlength: 20
     },
 },
     {
@@ -65,6 +64,6 @@ const paymentSchema = new mongoose.Schema({
     }
 )
 
-const Payments = mongoose.model('Payment', paymentSchema);
+const Payment = mongoose.model('Payment', paymentSchema);
 
-exports.Payments = Payments;
+exports.Payment = Payment;
