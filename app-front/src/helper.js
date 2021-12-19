@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export function obtenerUsuarios(user) {
 	let myuser;
 	switch (user) {
@@ -22,17 +20,9 @@ export function guardarUserLocalStorage(user, data) {
 	switch (user) {
 		case 'user-empleado':
 			myuser = {
-				email: 'user-empleado@mail.com',
 				user: 'user-empleado',
-				nombre: 'Tom',
-				apellido: 'Hardy',
-				telefono: 3056785432,
-				cedula: 10653245577,
+				data,
 			};
-
-			// const logearUser = async () => {
-			// 	const url = '';
-			// };
 
 			break;
 		case 'user-nomina':
@@ -79,10 +69,6 @@ export function listarSidebar(user) {
 	switch (user) {
 		case 'user-empleado':
 			rutas = [
-				{
-					ruta: '/solicitar-vacaciones',
-					nombre: 'Solicitar Vacaciones',
-				},
 				{
 					ruta: '/descargar-reporte-pago',
 					nombre: 'Descargar Reporte de Pago',
@@ -217,19 +203,6 @@ export function listarUsuarios(user) {
 			];
 			break;
 		case 'user-nomina':
-			// const ListarUsersAPI = async () => {
-			// 	const url =
-			// 		'https://app-nomina-project.herokuapp.com/admin/get-users';
-			// 	const listUser = await axios.get(url, {
-			// 		params: '',
-			// 		headers: { 'access-token': userData.data.token },
-			// 	});
-			// 	console.log(listUser.data);
-			// 	myuser = listUser.data;
-			// 	localStorage.setItem('listauser', JSON.stringify(myuser));
-			// };
-			// ListarUsersAPI();
-
 			myuser = [
 				{
 					id: 1,
@@ -294,4 +267,15 @@ export function listarUsuarios(user) {
 	console.log('lo que entra', myuser);
 	localStorage.setItem('listauser', JSON.stringify(myuser));
 	return JSON.stringify(myuser);
+}
+
+/********************************************/
+
+export function crearFechaVacaciones(fecha_inicio = '', fecha_fin = '') {
+	const vacaciones = {
+		fecha_inicio: fecha_inicio,
+		fecha_fin: fecha_fin,
+	};
+
+	localStorage.setItem('vacaciones-empleadops', JSON.stringify(vacaciones));
 }

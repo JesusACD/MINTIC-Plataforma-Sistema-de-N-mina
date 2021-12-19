@@ -1,6 +1,11 @@
 import axios from 'axios';
-import React, { Fragment, useState } from 'react';
-import { getUserLocalStorage, guardarUserLocalStorage } from '../helper';
+import React, { Fragment, useContext, useState } from 'react';
+import { DatosDeUsuario } from '../context/UserContext';
+import {
+	crearFechaVacaciones,
+	getUserLocalStorage,
+	guardarUserLocalStorage,
+} from '../helper';
 
 const Login = ({ user }) => {
 	// Estado para los campos del formulario
@@ -24,6 +29,7 @@ const Login = ({ user }) => {
 			let ur = {};
 			if (user === 'user-admin') {
 				ur.url = 'https://app-nomina-project.herokuapp.com/admin/login';
+				crearFechaVacaciones();
 			} else if (user === 'user-empleado') {
 				ur.url =
 					'https://app-nomina-project.herokuapp.com/employee/login';
@@ -44,6 +50,7 @@ const Login = ({ user }) => {
 					return null;
 				}
 			} catch (err) {
+				setError(true);
 				console.log(err);
 			}
 		};

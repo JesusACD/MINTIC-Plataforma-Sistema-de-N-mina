@@ -6,13 +6,18 @@ export const DatosDeUsuario = createContext();
 
 const UserContextProvider = (props) => {
 	const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+
 	const [result, guardarResult] = useState([]);
 	const [lista, actrualizarLista] = useState(false);
 	const [resultempleado, guardarResultEmpleado] = useState([]);
 	const [listaempleado, actrualizarListaEmpleado] = useState(false);
 
+	let usuario = user ? user.data.user : '';
+	const [myuser, setMyUser] = useState(usuario);
+
 	// listar usaurios nomina
 	useEffect(() => {
+		actrualizarLista(false);
 		const ListarUsersAPI = async () => {
 			const url =
 				'https://app-nomina-project.herokuapp.com/admin/get-users';
@@ -32,6 +37,7 @@ const UserContextProvider = (props) => {
 
 	// listar usuarios empleados
 	useEffect(() => {
+		actrualizarListaEmpleado(false);
 		const ListarUsersEmpleadoAPI = async () => {
 			const url =
 				'https://app-nomina-project.herokuapp.com/user/get-employees';
@@ -57,6 +63,8 @@ const UserContextProvider = (props) => {
 				actrualizarLista,
 				actrualizarListaEmpleado,
 				resultempleado,
+				myuser,
+				setMyUser,
 			}}>
 			{props.children}
 		</DatosDeUsuario.Provider>

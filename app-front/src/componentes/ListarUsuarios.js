@@ -1,17 +1,59 @@
+import axios from 'axios';
 import { useContext } from 'react';
 import { DatosDeUsuario } from '../context/UserContext';
 
-const ListarUsuarios = ({ user }) => {
-	const { result, resultempleado } = useContext(DatosDeUsuario);
+const ListarUsuarios = ({ userTabla }) => {
+	const {
+		result,
+		resultempleado,
+		user,
+		actrualizarLista,
+		actrualizarListaEmpleado,
+	} = useContext(DatosDeUsuario);
 	let res = {};
 
-	if (user === 'user-nomina') {
+	if (userTabla === 'user-nomina') {
 		res.usuarios = result;
 	} else {
 		res.usuarios = resultempleado;
 	}
 	const usuarios = res.usuarios;
-	console.log('mis usuarios', usuarios); 
+	console.log('mis usuarios', usuarios);
+
+	const desabilitarUser = async (id) => {
+		let ur = {};
+		if (userTabla === 'user-admin') {
+			ur.url = 'https://app-nomina-project.herokuapp.com/admin/login';
+		} else if (userTabla === 'user-empleado') {
+			ur.url = `https://app-nomina-project.herokuapp.com/user/delete-employee/${id}`;
+		} else {
+			ur.url = `https://app-nomina-project.herokuapp.com/admin/delete-user/${id}`;
+		}
+
+		const url = ur.url;
+		const token = JSON.parse(localStorage.getItem('user'));
+		const data = {
+			token,
+		};
+
+		try {
+			console.log({ t: token.data.token });
+			console.log(url);
+			// return;
+			const result = await axios.put(url, data, {
+				headers: {
+					'Content-Type': 'application/json',
+					'access-token': token.data.token,
+				},
+			});
+			console.log('abajo el resultado');
+			console.log(result.data);
+			actrualizarLista(true);
+			actrualizarListaEmpleado(true);
+		} catch (err) {
+			console.log('salio u error', err);
+		}
+	};
 
 	return (
 		<div className='w-50 p-3 mt-2'>
@@ -28,34 +70,24 @@ const ListarUsuarios = ({ user }) => {
 					</tr>
 				</thead>
 				<tbody>
-					{usuarios.map((e) => (
-						<tr>
-							{/* <th scope='row'>{e.id}</th> */}
-							<td>{e.email}</td>
-							{/* <td>{e.user}</td> */}
-							<td>{e.nombre}</td>
-							<td>{e.apellido}</td>
-							<td>{e.telefono}</td>
-							<td>{e.cedula}</td>
-						</tr>
-					))}
-					{/* <tr>
-						<th scope='row'>1</th>
-						<td>Mark</td>
-						<td>Otto</td>
-						<td>@mdo</td>
-					</tr>
-					<tr>
-						<th scope='row'>2</th>
-						<td>Jacob</td>
-						<td>Thornton</td>
-						<td>@fat</td>
-					</tr>
-					<tr>
-						<th scope='row'>3</th>
-						<td colSpan={2}>Larry the Bird</td>
-						<td>@twitter</td>
-					</tr> */}
+					{usuarios.map((e) =>
+						e.enabled ? (
+							<tr>
+								<td key={e._id}>{e.email}</td>
+								<td>{e.nombre}</td>
+								<td>{e.apellido}</td>
+								<td>{e.telefono}</td>
+								<td>{e.cedula}</td>
+								<td>
+									<button
+										className='btn btn-primary'
+										onClick={() => desabilitarUser(e._id)}>
+										Borrar
+									</button>
+								</td>
+							</tr>
+						) : null
+					)}
 				</tbody>
 			</table>
 		</div>

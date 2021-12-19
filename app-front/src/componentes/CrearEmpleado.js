@@ -10,8 +10,20 @@ const CrearEmpleado = () => {
 		apellido: '',
 		telefono: '',
 		cedula: '',
+		cargo: '',
+		salario: '',
+		fecha_contrato: '',
 	});
-	const { email, nombre, apellido, telefono, cedula } = users;
+	const {
+		email,
+		nombre,
+		apellido,
+		telefono,
+		cedula,
+		cargo,
+		salario,
+		fecha_contrato,
+	} = users;
 	const { actrualizarListaEmpleado } = useContext(DatosDeUsuario);
 	const [exito, setExito] = useState(false);
 
@@ -22,7 +34,7 @@ const CrearEmpleado = () => {
 		});
 	};
 
-	const CrearUserNominaAPI = async () => {
+	const CrearUserEmpleadoAPI = async () => {
 		const url =
 			'https://app-nomina-project.herokuapp.com/user/register-employee';
 		let userData = JSON.parse(localStorage.getItem('user'));
@@ -30,8 +42,13 @@ const CrearEmpleado = () => {
 		const listUser = await axios.post(url, users, {
 			headers: { 'access-token': userData.data.token },
 		});
+		console.log(userData);
 		console.log(listUser.data);
 		actrualizarListaEmpleado(true);
+	};
+
+	const CrearEmpleado = () => {
+		localStorage.setItem('emplados', JSON.stringify(users));
 	};
 
 	const handlerSudmit = (e) => {
@@ -46,6 +63,7 @@ const CrearEmpleado = () => {
 			return null;
 		}
 		setExito(true);
+		CrearUserEmpleadoAPI();
 		setUsers({
 			email: '',
 			nombre: '',
@@ -128,6 +146,44 @@ const CrearEmpleado = () => {
 										value={cedula}
 									/>
 									<label htmlFor='Cedula'>Cedula</label>
+								</div>
+								<div className='form-floating mb-3'>
+									<input
+										className='form-control'
+										id='cargo'
+										type='text'
+										placeholder='cargo'
+										name='cargo'
+										onChange={handlerUser}
+										value={cargo}
+									/>
+									<label htmlFor='cargo'>Cargo</label>
+								</div>
+								<div className='form-floating mb-3'>
+									<input
+										className='form-control'
+										id='salario'
+										type='number'
+										placeholder='salario'
+										name='salario'
+										onChange={handlerUser}
+										value={salario}
+									/>
+									<label htmlFor='salario'>Salario</label>
+								</div>
+								<div className='form-floating mb-3'>
+									<input
+										className='form-control'
+										id='fecha_contrato'
+										type='text'
+										placeholder='fecha de contrato'
+										name='fecha_contrato'
+										onChange={handlerUser}
+										value={fecha_contrato}
+									/>
+									<label htmlFor='fechaContrato'>
+										Fecha de Contrato
+									</label>
 								</div>
 
 								<div className='d-flex align-items-center justify-content-between mt-4 mb-0'>

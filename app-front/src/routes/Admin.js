@@ -16,11 +16,11 @@ const Admin = () => {
 			/>
 			<Route
 				path='/admin-listar-empleados'
-				element={<ListarUsuarios user='user-empleado' />}
+				element={<ListarUsuarios userTabla='user-empleado' />}
 			/>
 			<Route
 				path='/admin-listar-nomina'
-				element={<ListarUsuarios user='user-nomina' />}
+				element={<ListarUsuarios userTabla='user-nomina' />}
 			/>
 			<Route
 				path='/admin-permiso-empleados'

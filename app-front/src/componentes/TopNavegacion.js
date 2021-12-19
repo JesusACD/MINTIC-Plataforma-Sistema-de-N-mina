@@ -3,7 +3,8 @@ import { Link } from 'react-router-dom';
 import { DatosDeUsuario } from '../context/UserContext';
 
 const TopNavegacion = () => {
-	const { user } = useContext(DatosDeUsuario);
+	const { myuser, user } = useContext(DatosDeUsuario);
+	const { nombre, apellido } = myuser;
 	const cerrarSesion = () => {
 		localStorage.removeItem(user.user);
 		localStorage.removeItem('admin');
@@ -28,7 +29,7 @@ const TopNavegacion = () => {
 					aria-controls='navbarSupportedContent'
 					aria-expanded='false'
 					aria-label='Toggle navigation'>
-					<i class="fas fa-user fa-fw"></i>
+					<i class='fas fa-user fa-fw'></i>
 				</button>
 				<div
 					className='collapse navbar-collapse'
@@ -43,7 +44,7 @@ const TopNavegacion = () => {
 								data-bs-toggle='dropdown'
 								aria-haspopup='true'
 								aria-expanded='false'>
-								{`${user.nombre} ${user.apellido}`}
+								{`${nombre} ${apellido}`}
 							</a>
 							<div
 								className='dropdown-menu dropdown-menu-end'

@@ -1,12 +1,15 @@
-import React from 'react';
+import React, { useContext } from 'react';
+import { DatosDeUsuario } from '../../context/UserContext';
 
 const UserDatos = ({ setEditarDatos, editardatros }) => {
+	const { user, myuser } = useContext(DatosDeUsuario);
 	const editarDatosUser = () => {
 		setEditarDatos(true);
 	};
-	const { nombre, apellido, cedula, telefono } = JSON.parse(
-		localStorage.getItem('user')
-	);
+	// const { nombre, apellido, cedula, telefono } = JSON.parse(
+	// 	localStorage.getItem('user')
+	// );
+	const { nombre, apellido, cedula, telefono } = myuser;
 	return (
 		<div className='container-fluid'>
 			<div className='w-50 mt-2'>
