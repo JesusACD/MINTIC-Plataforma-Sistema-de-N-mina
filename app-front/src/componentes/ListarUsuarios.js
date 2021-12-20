@@ -57,6 +57,10 @@ const ListarUsuarios = ({ userTabla }) => {
 
 	return (
 		<div className='w-50 p-3 mt-2'>
+			<h2>
+				Listado de Usuarios{' '}
+				{userTabla === 'user-empleado' ? 'Empleados' : 'Nomina'}
+			</h2>
 			<table className='table'>
 				<thead>
 					<tr>

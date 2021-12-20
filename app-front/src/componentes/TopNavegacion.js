@@ -44,7 +44,7 @@ const TopNavegacion = () => {
 								data-bs-toggle='dropdown'
 								aria-haspopup='true'
 								aria-expanded='false'>
-								{`${nombre} ${apellido} | ${cargo}`}
+								{`${nombre} ${apellido} | ${cargo || ''}`}
 							</a>
 							<div
 								className='dropdown-menu dropdown-menu-end'
