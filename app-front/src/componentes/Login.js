@@ -59,12 +59,12 @@ const Login = ({ user }) => {
 	return (
 		<Fragment>
 			<div className='contenido-centro'>
-				<div className='wrapper'>
+				<div className='wrapper shadow-lg'>
 					{/* <div className='d-grid gap-2 d-md-block'> */}
 					<div className='d-flex justify-content-around'>
 						<button
 							type='button'
-							className='btn btn-outline-primary'
+							className='btn btn-outline-primary custom'
 							onClick={() =>
 								(window.location.href = '/empleado-login')
 							}>
@@ -72,15 +72,14 @@ const Login = ({ user }) => {
 						</button>
 						<button
 							type='button'
-							className='btn btn-outline-secondary'
+							className='btn btn-outline-secondary custom'
 							onClick={() =>
 								(window.location.href = '/nomina-login')
-							}>
-							Nomina
+							}>Nómina
 						</button>
 						<button
 							type='button'
-							className='btn btn-outline-success'
+							className='btn btn-outline-success custom'
 							onClick={() =>
 								(window.location.href = '/admin-login')
 							}>
@@ -96,7 +95,7 @@ const Login = ({ user }) => {
 						/>
 					</div>
 					{error ? (
-						<div className='alert alert-danger'>
+						<div className='alert alert-danger text-center fw-bold'>
 							Usuario o contraseña invalidos
 						</div>
 					) : null}
@@ -104,25 +103,23 @@ const Login = ({ user }) => {
 						Login {user.charAt(5).toUpperCase() + user.slice(6)}
 					</h3>
 					<form onSubmit={validadUser}>
-						<div className='form-group'>
-							<label htmlFor='email'>Email</label>
-							<input
-								type='email'
-								className='form-control'
-								id='email'
-								aria-describedby='emailHelp'
-								placeholder='Enter email'
-								name='email'
-								onChange={actualizarUsuario}
-							/>
-							{/* <small
-								id='emailHelp'
-								className='form-text text-muted'>
-								We'll never share your email with anyone else.
-							</small> */}
-						</div>
-						<div className='form-group'>
-							<label htmlFor='password'>Password</label>
+					<div className='form-group form-floating mb-3'>
+					
+					<input
+						type='email'
+						className='form-control '
+						id='Email'
+						aria-describedby='emailHelp'
+						placeholder='Email'
+						name='email'
+						onChange={actualizarUsuario}
+						
+					/>
+						<label htmlFor='Email'>Email</label>
+
+				</div>
+				<div className='form-group form-floating mb-3'>
+							
 							<input
 								type='password'
 								className='form-control'
@@ -131,19 +128,10 @@ const Login = ({ user }) => {
 								name='password'
 								onChange={actualizarUsuario}
 							/>
+							<label htmlFor='Password'>Password</label>
 						</div>
-						<div className='form-check'>
-							{/* <input
-								type='checkbox'
-								className='form-check-input'
-								id='exampleCheck1'
-							/>
-							<label
-								className='form-check-label'
-								for='exampleCheck1'>
-								Check me out
-							</label> */}
-						</div>
+					
+				
 						<div className='login'>
 							<button type='submit' className='btn btn-success'>
 								Login

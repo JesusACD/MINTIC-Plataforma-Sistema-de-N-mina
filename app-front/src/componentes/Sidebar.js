@@ -14,7 +14,7 @@ const Sidebar = () => {
 	return (
 		<div className='border-end bg-carulla-light' id='sidebar-wrapper'>
 			<div className='sidebar-heading border-bottom bg-carulla'>
-				Hola <span className='fw-bold'>{`${nombre} ${apellido}`}</span>
+				Hola, <span className='fw-bold'>{`${nombre} `}</span>
 				<p className='fs-6'>
 					{myyuser.charAt(5).toUpperCase() + myyuser.slice(6)}
 				</p>
