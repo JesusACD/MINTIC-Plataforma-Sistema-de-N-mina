@@ -14,7 +14,7 @@ const ListarPermisos = ({ type }) => {
 	const solicitarPermiso = async (id) => {
 		const parametro =
 			type === 'vacaciones'
-				? '/user/approve-vacation'
+				? 'user/approve-vacation'
 				: 'user/approve-permission';
 		const url = `https://app-nomina-project.herokuapp.com/${parametro}/${id}`;
 		const token = user.data.token;
@@ -44,7 +44,6 @@ const ListarPermisos = ({ type }) => {
 						<tr>
 							<th scope='col'>Nombre</th>
 							<th scope='col'>Apellido</th>
-							<th scope='col'>Correo</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -57,7 +56,10 @@ const ListarPermisos = ({ type }) => {
 										<td>
 											<button
 												type='button'
-												class='btn btn-success'>
+												class='btn btn-success'
+												onClick={() =>
+													solicitarPermiso(e._id)
+												}>
 												Aceptar
 											</button>
 										</td>

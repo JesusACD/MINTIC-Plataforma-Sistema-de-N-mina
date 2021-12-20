@@ -4,9 +4,10 @@ import { useState } from 'react/cjs/react.development';
 const DescargarDocumentos = ({ title, boton }) => {
 	const [cargar, setCargar] = useState(false);
 
-	const descargarCertificado = () => {
+	const descargarCertificado = async() => {
 		setCargar(true);
 		const id = JSON.parse(localStorage.getItem('user')).data.user._id;
+		const cedula = JSON.parse(localStorage.getItem('user')).data.user.cedula;
 		let ur = {};
 		if (title === 'Solicitar Certificado Laboral') {
 			ur.url = `https://app-nomina-project.herokuapp.com/employee/get-cert/${id}`;
@@ -14,16 +15,21 @@ const DescargarDocumentos = ({ title, boton }) => {
 			ur.url = `https://app-nomina-project.herokuapp.com/employee/report_payment/${id}`;
 		}
 		const url = ur.url;
-		axios
-			.get(url)
-			.then((e) => {
-				console.log(e.status);
-				setCargar(false);
-			})
-			.catch((error) => {
-				setCargar(false);
-			});
-		
+		axios({
+			url: url,
+			method: "GET",
+			responseType: "blob",
+		  }).then((response) => {
+			 const url = window.URL.createObjectURL(new  Blob([response.data]));
+			 const link = document.createElement("a");
+			 link.href = url;
+			 link.setAttribute("download", `${cedula}.pdf`);
+			 document.body.appendChild(link);
+			 link.click();
+		  });
+		setTimeout(()=>{
+			setCargar(false);
+		},5000)
 	};
 	return (
 		<>
