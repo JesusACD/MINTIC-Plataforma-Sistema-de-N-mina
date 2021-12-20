@@ -27,7 +27,7 @@ router.post('/login', async (req, res)=>{
 
 router.post('/register-employee', validNomina, async(req, res)=>{
     const {nombre, apellido, cedula, email, telefono, cargo, salario, fecha_contrato} = req.body;
-    
+    req.body.email= email.toLowerCase();
     if (!nombre || !apellido || !cedula || !email || !telefono || !cargo || !salario || !fecha_contrato){
         return res.status(400).json({msg: 'Debe enviar todos los datos solicitados.'})
     }
