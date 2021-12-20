@@ -7,7 +7,7 @@ const bcrypt = require('bcrypt');
 const {sendMail} = require('../config/sendmail');
 const _ = require('lodash');
 const { validNomina, validAdmin } = require('../config/auth');
-const { Payments } = require('../models/payments');
+const { Payment } = require('../models/payments');
 
 const router = express.Router();
 
@@ -147,12 +147,12 @@ router.get('/payments', validNomina, async(req, res)=>{
     const mes_pago= today.toLocaleString('default', { month: 'long' });
     employees.forEach(async (employee)=>{
         let {nombre, apellido, cedula, cargo, salario, pagos_extras_mes, pnr_mes } = employee;
-        const payment = new Payments({fecha_pago, mes_pago, nombre, apellido, cedula, cargo, salario, pagos_extras_mes})
+        const payment = new Payment({fecha_pago, mes_pago, nombre, apellido, cedula, cargo, salario, pagos_extras_mes})
         const _descuentos_ley=  salario * 0.08;
         payment.descuentos_ley = _descuentos_ley.toFixed(2);
         const _permisos_NR_mes = pnr_mes * salario / 30;
         payment.permisos_NR_mes = _permisos_NR_mes.toFixed(2);
-        const _total_pago = salario.toFixed(2) + pagos_extras_mes - payment.descuentos_ley - payment.permisos_NR_mes;
+        const _total_pago = salario + pagos_extras_mes - payment.descuentos_ley - payment.permisos_NR_mes;
         payment.total_pago = _total_pago.toFixed(2);
         await payment.save()
         .then((data)=>{console.log('Payment ok!')})

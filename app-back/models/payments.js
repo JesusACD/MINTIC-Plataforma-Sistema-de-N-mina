@@ -56,7 +56,8 @@ const paymentSchema = new mongoose.Schema({
     },
     total_pago: {
         type: Number,
-        maxlength: 20
+        maxlength: 20,
+        required: true
     },
 },
     {

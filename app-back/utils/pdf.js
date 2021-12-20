@@ -114,11 +114,11 @@ function pagopdf(mes, mes_num, ano, nombre, apellido, cedula, cargo, salario, pa
         margin-right: 100px;
         justify-content: baseline;
         text-align: justify;
-        font-size: medium;
+        font-size: small;
       }
       #pageHeader {
         margin-left: 100px;
-        font-size: medium;
+        font-size: small;
       }
       body {
         margin: 10px;
