@@ -70,6 +70,9 @@ const CrearEmpleado = () => {
 			apellido: '',
 			telefono: '',
 			cedula: '',
+			cargo: '',
+			salario: '',
+			fecha_contrato: '',
 		});
 	};
 	return (

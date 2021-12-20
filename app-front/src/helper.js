@@ -98,9 +98,17 @@ export function listarSidebar(user) {
 					nombre: 'Listar Empleados',
 				},
 				{
-					ruta: '/reportes',
-					nombre: 'Reportes',
+					ruta: '/listar-vacaciones-empleados',
+					nombre: 'Vacaciones Empleados',
 				},
+				{
+					ruta: '/listar-permiso-empleados',
+					nombre: 'Permisos Empleados',
+				},
+				// {
+				// 	ruta: '/reportes',
+				// 	nombre: 'Reportes',
+				// },
 			];
 			break;
 		case 'user-admin':
@@ -129,10 +137,10 @@ export function listarSidebar(user) {
 					ruta: '/admin-vacaciones-empleados',
 					nombre: 'Vacaciones Empleados',
 				},
-				{
-					ruta: '/admin-reportes',
-					nombre: 'Reportes',
-				},
+				// {
+				// 	ruta: '/admin-reportes',
+				// 	nombre: 'Reportes',
+				// },
 			];
 			break;
 

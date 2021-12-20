@@ -1,6 +1,5 @@
 import axios from 'axios';
 import React, { createContext, useEffect, useState } from 'react';
-import { listarUsuarios } from '../helper';
 
 export const DatosDeUsuario = createContext();
 
@@ -11,9 +10,45 @@ const UserContextProvider = (props) => {
 	const [lista, actrualizarLista] = useState(false);
 	const [resultempleado, guardarResultEmpleado] = useState([]);
 	const [listaempleado, actrualizarListaEmpleado] = useState(false);
+	const [listvacaciones, setListVacaciones] = useState([]);
+	const [activarVacaciones, setActivarVacaciones] = useState(false);
+	const [listpermisos, setListPermisos] = useState([]);
+	const [activarpermisos, setActivarPermisos] = useState(false);
 
 	let usuario = user ? user.data.user : '';
 	const [myuser, setMyUser] = useState(usuario);
+
+	// listar usuarios permiso
+	useEffect(() => {
+		setActivarPermisos(false);
+		const listarPermisos = async () => {
+			const url =
+				'https://app-nomina-project.herokuapp.com/user/get-permissions';
+			let token = user.data.token;
+			const result = await axios.get(url, {
+				headers: { 'access-token': token },
+			});
+			console.log(result.data);
+			setListPermisos(result.data);
+		};
+		if (user) listarPermisos();
+	}, [activarpermisos]);
+
+	// listar usuarios vacaciones
+	useEffect(() => {
+		setActivarVacaciones(false);
+		const listarVacaciones = async () => {
+			const url =
+				'https://app-nomina-project.herokuapp.com/user/get-vacations';
+			let token = user.data.token;
+			const result = await axios.get(url, {
+				headers: { 'access-token': token },
+			});
+			console.log(result.data);
+			setListVacaciones(result.data);
+		};
+		if (user) listarVacaciones();
+	}, [activarVacaciones]);
 
 	// listar usaurios nomina
 	useEffect(() => {
@@ -65,6 +100,10 @@ const UserContextProvider = (props) => {
 				resultempleado,
 				myuser,
 				setMyUser,
+				listvacaciones,
+				setActivarVacaciones,
+				listpermisos,
+				setActivarPermisos,
 			}}>
 			{props.children}
 		</DatosDeUsuario.Provider>

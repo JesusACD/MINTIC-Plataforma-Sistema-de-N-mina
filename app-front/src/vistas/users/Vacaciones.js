@@ -3,9 +3,7 @@ import React, { useState, useContext } from 'react';
 import Exito from '../../componentes/Exito';
 import { DatosDeUsuario } from '../../context/UserContext';
 
-const Vacaciones = () => {
-	const [fecha, setFecha] = useState();
-	const [fecha2, setFecha2] = useState();
+const Vacaciones = ({ type }) => {
 	const { user, setUser } = useContext(DatosDeUsuario);
 	const [valuedate, setValueDate] = useState({
 		i: '',
@@ -18,9 +16,6 @@ const Vacaciones = () => {
 		// setFecha(e.target.value);
 		setValueDate({ ...valuedate, [e.target.name]: e.target.value });
 	};
-	// const handleFecha2 = (e) => {
-	// 	setFecha2(e.target.value);
-	// };
 
 	const guardarFecha = (e) => {
 		e.preventDefault();
@@ -30,11 +25,9 @@ const Vacaciones = () => {
 		const f2 = valuedate.ii.split('-').reverse();
 		const myfecha2 = `${f2[0]}/${f2[1]}/${f2[2]}`;
 
-		setFecha(myfecha);
-		setFecha2(myfecha2);
 		const token = JSON.parse(localStorage.getItem('user')).data.token;
-		const url =
-			'https://app-nomina-project.herokuapp.com/employee/vacation';
+		const parametro = type === 'vacaciones' ? 'vacation' : 'permission';
+		const url = `https://app-nomina-project.herokuapp.com/employee/${parametro}`;
 		axios
 			.post(
 				url,
@@ -61,7 +54,9 @@ const Vacaciones = () => {
 	return (
 		<div className='container-fluid'>
 			<div className='mb-3 w-50 mt-2'>
-				<h3>Solicitar Vacaciones</h3>
+				<h3>
+					Solicitar {type === 'vacaciones' ? 'Vacaciones' : 'Permiso'}
+				</h3>
 			</div>
 			<form onSubmit={guardarFecha}>
 				<div className='input-group mb-3 w-50 mt-2'>

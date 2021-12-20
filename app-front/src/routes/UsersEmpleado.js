@@ -29,8 +29,15 @@ const UsersEmpleado = () => {
 					/>
 				}
 			/>
-			<Route path='/solicitar-vacaciones' element={<Vacaciones />} />
 			<Route
+				path='/solicitar-vacaciones'
+				element={<Vacaciones type='vacaciones' />}
+			/>
+			<Route
+				path='/solicitar-permisos'
+				element={<Vacaciones type='permiso' />}
+			/>
+			{/* <Route
 				path='/solicitar-permisos'
 				element={
 					<DescargarDocumentos
@@ -38,7 +45,7 @@ const UsersEmpleado = () => {
 						boton='Solicitar'
 					/>
 				}
-			/>
+			/> */}
 		</Routes>
 	);
 };

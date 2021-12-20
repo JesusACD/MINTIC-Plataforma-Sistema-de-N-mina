@@ -1,6 +1,7 @@
 import { Route, Routes } from 'react-router';
 import Contenido from '../componentes/Contenido';
 import CrearEmpleado from '../componentes/CrearEmpleado';
+import ListarPermisos from '../componentes/ListarPermisos';
 import ListarUsuarios from '../componentes/ListarUsuarios';
 import CrearUsuarioNomina from '../vistas/admin/CrearUsuarioNomina';
 import MostrarDatos from '../vistas/users/MostrarDatos';
@@ -24,22 +25,18 @@ const Admin = () => {
 			/>
 			<Route
 				path='/admin-permiso-empleados'
-				element={
-					<Contenido titulo='Gestionar la nomina' user='user-admin' />
-				}
+				element={<ListarPermisos type='permiso' />}
 			/>
 			<Route
 				path='/admin-vacaciones-empleados'
-				element={
-					<Contenido titulo='Gestionar la nomina' user='user-admin' />
-				}
+				element={<ListarPermisos type='vacaciones' />}
 			/>
-			<Route
+			{/* <Route
 				path='/admin-reportes'
 				element={
 					<Contenido titulo='Gestionar la nomina' user='user-admin' />
 				}
-			/>
+			/> */}
 		</Routes>
 	);
 };
