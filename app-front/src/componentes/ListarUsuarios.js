@@ -56,51 +56,53 @@ const ListarUsuarios = ({ userTabla }) => {
 	};
 
 	return (
-		<div className='w-50 p-3 mt-2'>
+		<div className='w-55 p-3 mt-2 table-responsive'>
 			<h2>
 				Listado de Usuarios{' '}
 				{userTabla === 'user-empleado' ? 'Empleados' : 'Nomina'}
 			</h2>
-			<table className='table'>
-				<thead>
+			<table className='table table-striped table-hover table-bordered'>
+				<thead >
 					<tr>
 						{/* <th scope='col'>#</th> */}
-						<th scope='col'>Correo</th>
+						<th className='text-center' scope='col'>Correo electrónico</th>
 						{/* <th scope='col'>User</th> */}
-						<th scope='col'>Nombre</th>
-						<th scope='col'>Apellido</th>
-						<th scope='col'>Teléfono</th>
-						<th scope='col'>Cédula</th>
+						<th className='text-center' scope='col'>Nombre</th>
+						<th className='text-center' scope='col'>Apellido</th>
+						<th className='text-center' scope='col'>Teléfono</th>
+						<th className='text-center' scope='col'>Cédula</th>
 						{userTabla === 'user-empleado' ? (
 							<>
-								<th scope='col'>Cargo</th>
-								<th scope='col'>Salario</th>
-								<th scope='col'>Fecha de Contratación</th>
+								<th  className='text-center' scope='col'>Cargo</th>
+								<th className='text-center' scope='col'>Salario</th>
+								<th className='text-center' scope='col'>Fecha de Contratación</th>
 							</>
 						) : null}
+						<th>Acciones</th>
 					</tr>
 				</thead>
 				<tbody>
 					{usuarios.map((e) =>
 						e.enabled ? (
 							<tr>
-								<td key={e._id}>{e.email}</td>
-								<td>{e.nombre}</td>
-								<td>{e.apellido}</td>
-								<td>{e.telefono}</td>
-								<td>{e.cedula}</td>
+								<td className='text-center' key={e._id}>{e.email}</td>
+								<td className='text-center'>{e.nombre}</td>
+								<td className='text-center'>{e.apellido}</td>
+								<td className='text-center'>{e.telefono}</td>
+								<td className='text-center'>{e.cedula}</td>
 								{userTabla === 'user-empleado' ? (
 									<>
-										<td>{e.cargo}</td>
-										<td>{e.salario}</td>
-										<td>{e.fecha_contrato}</td>
+										<td className='text-center'>{e.cargo}</td>
+										<td className='text-center'>{e.salario}</td>
+										<td className='text-center'>{e.fecha_contrato}</td>
 									</>
 								) : null}
-								<td>
+								<td className='text-center'>
 									<button
-										className='btn btn-primary'
+										className='btn btn-primary '
 										onClick={() => desabilitarUser(e._id)}>
-										Borrar
+										<i className="far fa-trash-alt" />
+
 									</button>
 								</td>
 							</tr>
