@@ -11,7 +11,7 @@ const UsersNomina = () => {
 			<Route path='/crear-empleados' element={<CrearEmpleado />} />
 			<Route
 				path='/listar-empleados'
-				element={<ListarUsuarios user='user-empleado' />}
+				element={<ListarUsuarios userTabla='user-empleado' />}
 			/>
 			<Route
 				path='/reportes'

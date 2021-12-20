@@ -75,7 +75,7 @@ export function listarSidebar(user) {
 				},
 				{
 					ruta: '/solicitar-certificado-laboral',
-					nombre: 'Certificado Laborar',
+					nombre: 'Certificado Laboral',
 				},
 				{
 					ruta: '/solicitar-vacaciones',

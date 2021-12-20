@@ -76,7 +76,6 @@ const ListarUsuarios = ({ userTabla }) => {
 								<th scope='col'>Cargo</th>
 								<th scope='col'>Salario</th>
 								<th scope='col'>Fecha de Contratación</th>
-								<th scope='col'>Aprobar Vacaciones</th>
 							</>
 						) : null}
 					</tr>
@@ -95,9 +94,6 @@ const ListarUsuarios = ({ userTabla }) => {
 										<td>{e.cargo}</td>
 										<td>{e.salario}</td>
 										<td>{e.fecha_contrato}</td>
-										<td>
-											{e.vacations || 'No hay solicitud'}
-										</td>
 									</>
 								) : null}
 								<td>
