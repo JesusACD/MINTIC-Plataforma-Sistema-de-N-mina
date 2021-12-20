@@ -29,7 +29,8 @@ const DescargarDocumentos = ({ title, boton }) => {
 		<>
 			<div className='row justify-content-center'>
 				<div className='col-lg-5'>
-					<div className='card shadow-lg border-0 rounded-lg mt-5 text-center'>
+				  <div dangerouslySetInnerHTML={{ __html: ' &nbsp;' }} />
+					  <div className='card border-1 rounded-lg mt-6 text-center'>
 						<div className='card-header'>{title}</div>
 						<div className='card-body '>
 							{!cargar ? (
