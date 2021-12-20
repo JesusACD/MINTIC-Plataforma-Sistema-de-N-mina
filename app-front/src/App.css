@@ -3,20 +3,9 @@ body{
     margin: 0;
     padding: 0;
 }
-a {
-    color: #4d7448 !important;
-}
-/* .fw-bold {
-    color: #4d7448 !important;
-} */
-.bg-carulla > * {
-    color: #4d7448 !important;
-}
-div .bg-carulla{
-    color: #4d7448 !important;
-}
+
 .contenido-centro {
-    background-color: #ccdfb5;
+    background-color:#fff;
     height: 100vh;
     display: flex;
     justify-content: center;
@@ -59,6 +48,20 @@ img.avatar {
     border-radius: 50%;
 }
 .form-group label{
-    font-weight: 600;
+    font-weight: bold;
     margin: 5px 0 3px 0;
+    color: #8F8F8F;
+}
+.custom {
+    width: 90px !important;
+}
+a {
+    color: #4d7448 !important;
+}
+
+.bg-carulla > * {
+    color: #4d7448 !important;
+}
+div .bg-carulla{
+    color: #4d7448 !important;
 }
