@@ -157,7 +157,7 @@ router.get('/payments', validNomina, async(req, res)=>{
         await payment.save()
         .then((data)=>{console.log('Payment ok!')})
         .catch(err => (`No se pudo realizar el pago del usuario ${nombre} ${apellido}`))
-        const _employee = await Employee.findOneAndUpdate({cedula}, {pnr_mes: 0, pagos_extras_mes: 0 })
+        await Employee.findOneAndUpdate({cedula}, {pnr_mes: 0, pagos_extras_mes: 0 })
 
     })
     return res.status(200).json({msg: 'Se ejecutó la operación correctamente.'})

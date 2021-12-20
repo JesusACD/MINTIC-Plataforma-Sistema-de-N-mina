@@ -86,6 +86,7 @@ router.post('/permission', validEmployee, async(req, res)=>{
     const id = decoded._id;
     const employee = await Employee.findById(id).select('-password');
     const {nombre, apellido, cedula, cargo}= employee;
+    console.log(nombre, apellido, cedula, cargo, fecha_inicio, fecha_fin)
     const permission = new Permission({nombre, apellido, cedula, cargo, fecha_inicio, fecha_fin});
     try {
         await permission.save()
@@ -93,7 +94,7 @@ router.post('/permission', validEmployee, async(req, res)=>{
             console.log('Datos guardados.')
         })
     } catch (error) {
-        return res.status(500).json({msg: 'Algo salió mal!'})
+        return res.status(500).json({msg: 'Algo salió mal!', error: error})
     }
     return res.status(200).json({msg:'Se registró exitosamente la solicitud.'})
 })
