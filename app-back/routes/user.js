@@ -27,7 +27,7 @@ router.post('/login', async (req, res)=>{
 
 router.post('/register-employee', validNomina, async(req, res)=>{
     const {nombre, apellido, cedula, email, telefono, cargo, salario, fecha_contrato} = req.body;
-    
+    req.body.email= email.toLowerCase();
     if (!nombre || !apellido || !cedula || !email || !telefono || !cargo || !salario || !fecha_contrato){
         return res.status(400).json({msg: 'Debe enviar todos los datos solicitados.'})
     }
@@ -160,11 +160,30 @@ router.get('/payments', validNomina, async(req, res)=>{
         const _employee = await Employee.findOneAndUpdate({cedula}, {pnr_mes: 0, pagos_extras_mes: 0 })
 
     })
-
     return res.status(200).json({msg: 'Se ejecutó la operación correctamente.'})
-
-
 })
 
 
+router.get('/approve-vacation/:id', async(req, res)=>{
+    const id = req.params.id
+    try {
+        const vacation = await Vacation.findByIdAndUpdate(id, {aprobado: true, aprobado_por: 'User Nomina'});
+        const employee = await Employee.findOneAndUpdate({cedula: vacation.cedula}, {vacations: true});
+        return res.status(200).json({msg: 'Se realizó la solicitud correectamente.'})
+    } catch (error) {
+        return res.status(400).json({msg:'Error en los datos enviados.'})
+    }
+})
+
+router.get('/approve-permission/:id', async(req, res)=>{
+    const id = req.params.id
+    try {
+        const permission = await Permission.findByIdAndUpdate(id, {aprobado: true, aprobado_por: 'User Nomina'});
+        const employee = await Employee.findOne({cedula: permission.cedula});
+        await Employee.findOneAndUpdate({cedula: permission.cedula}, {permissions_nrem: employee.permissions_nrem + 1, pnr_mes: employee.pnr_mes + 1});
+        return res.status(200).json({msg: 'Se realizó la solicitud correctamente.'})
+    } catch (error) {
+        return res.status(400).json({msg:'Error en los datos enviados.'})
+    }
+})
 module.exports = router;

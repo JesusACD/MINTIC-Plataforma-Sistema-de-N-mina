@@ -21,6 +21,7 @@ router.post('/register-user', validAdmin, async(req, res)=>{
 
     const randomstring = Math.random().toString(36).slice(-6);
     const password = randomstring.toUpperCase();
+    req.body.email= email.toLowerCase();
     user = new User(_.pick(req.body, ['nombre', 'apellido', 'cedula','email', 'telefono'], password, enabled));    
     const salt = await bcrypt.genSalt(10);
     user.password = await bcrypt.hash(password, salt);
