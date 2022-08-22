@@ -39,8 +39,9 @@ const Login = ({ user }) => {
 			const url = ur.url;
 
 			try {
-				const result = await axios.post(url, usuario);
-				console.log(result.data);
+	
+				const result = await axios.post(ur.url, usuario);
+				console.log(result);
 				if (result.data.auth) {
 					guardarUserLocalStorage(user, result.data);
 					localStorage.setItem('login', true);

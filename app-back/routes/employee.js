@@ -11,7 +11,6 @@ const { genpdf, pagopdf } = require('../utils/pdf');
 const path = require('path');
 const { Payment } = require('../models/payments');
 
-
 const router = express.Router();
 
 router.post('/login', async (req, res)=>{
@@ -38,7 +37,7 @@ router.put('/update/:id', validEmployee, async(req, res)=>{
         return res.status(404).json({msg: 'No fue posible ejecutar la actualización. Revise los datos!'});
     }
     if(!employeeUpdate) return res.status(404).json({msg: 'Usuario no encontrado.'})
-    return res.status(200).json({user: employeeUpdate, msg: 'Información actualizada correctamente'});   
+    return res.status(200).json({user: employeeUpdate, msg: 'Información actualizada correctamente.'});   
 
 })
 
